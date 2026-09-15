@@ -1,0 +1,115 @@
+export type Shrine = {
+  id: string;
+  name: string;
+  reading: string;
+  region: string;
+  city: string;
+  address: string;
+  kind: "神社" | "寺院";
+  lat: number;
+  lng: number;
+  gods: string[];
+  source?: string;
+  checked?: string;
+  fictional: boolean;
+  description: string;
+};
+export type God = {
+  id: string;
+  name: string;
+  reading: string;
+  kind: "神様" | "ご本尊";
+  description: string;
+  source?: string;
+  fictional?: boolean;
+};
+export type Status = "下書き" | "公開" | "終了";
+export type Mission = {
+  id: string;
+  title: string;
+  description: string;
+  kind: "learn" | "collect" | "visit";
+  target: number;
+  points: number;
+  start: string;
+  end: string;
+  status: Status;
+};
+export type Reward = {
+  id: string;
+  title: string;
+  description: string;
+  kind: "物品" | "特別体験";
+  points: number;
+  stock: number;
+  date: string;
+  cancelable: boolean;
+  status: Status;
+};
+export type EventItem = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  capacity: number;
+  remaining: number;
+  status: Status;
+};
+export type PhotoRecord = {
+  id: string;
+  shrineId: string;
+  date: string;
+  note: string;
+  hash: string;
+  sample: boolean;
+  createdAt: string;
+};
+export type Media = { original: Blob; thumbnail: Blob };
+export type LedgerEntry = {
+  id: string;
+  amount: number;
+  label: string;
+  at: string;
+};
+export type Redemption = {
+  id: string;
+  rewardId: string;
+  title: string;
+  points: number;
+  date: string;
+  cancelable: boolean;
+  cancelled: boolean;
+  at: string;
+};
+export type Ticket = {
+  id: string;
+  eventId: string;
+  title: string;
+  date: string;
+  cancelled: boolean;
+};
+export type Post = {
+  id: string;
+  text: string;
+  at: string;
+  sample: boolean;
+  hidden: boolean;
+  comments: { id: string; text: string }[];
+};
+export type State = {
+  version: 1;
+  favorites: string[];
+  visits: Record<string, string>;
+  learned: Record<string, string>;
+  notes: Record<string, string>;
+  addresses: { current: string; birth: string };
+  photos: PhotoRecord[];
+  missions: Mission[];
+  joined: Record<string, string>;
+  ledger: LedgerEntry[];
+  rewards: Reward[];
+  redemptions: Redemption[];
+  events: EventItem[];
+  tickets: Ticket[];
+  posts: Post[];
+};

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ChevronRight, MapPin, ArrowLeft } from "lucide-react";
 import type { Shrine } from "../types";
 import { useDemo } from "../context";
+import { PlaceVisual } from "./PlaceVisual";
+import { stories } from "../data/stories";
 import { repository } from "../services/storage";
 export function Notice({ children }: { children: ReactNode }) {
   return <div className="notice">{children}</div>;
@@ -71,11 +73,14 @@ export function ShrineCard({
   return (
     <Link className="shrine-card" to={`/shrines/${shrine.id}`}>
       <div className={`shrine-art ${shrine.kind === "寺院" ? "temple" : ""}`}>
-        <img
-          src={shrine.kind === "寺院" ? "/temple.svg" : "/shrine.svg"}
-          alt=""
-        />
+        <PlaceVisual shrine={shrine} />
         <span>{shrine.kind}</span>
+        {stories[shrine.id]?.photo && (
+          <small className="card-photo-credit">
+            Photo: {stories[shrine.id].photo!.author} ·{" "}
+            {stories[shrine.id].photo!.license}
+          </small>
+        )}
       </div>
       <div className="shrine-card-body">
         <div className="mini-label">
@@ -83,6 +88,9 @@ export function ShrineCard({
           {favorite ? " ・ お気に入り" : ""}
         </div>
         <h3>{shrine.name}</h3>
+        {stories[shrine.id] && (
+          <div className="card-story">{stories[shrine.id].subtitle}</div>
+        )}
         <p>
           <MapPin size={13} />
           {shrine.region} · {shrine.city}

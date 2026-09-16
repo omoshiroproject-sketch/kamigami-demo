@@ -428,3 +428,55 @@ for (const width of [375, 390, 768, 1440])
       page.getByRole("heading", { name: "運営体験モード" }),
     ).toBeVisible();
   });
+
+test("寺社の写真・歴史・ご利益・出典と写真失敗時の代替", async ({ page }) => {
+  for (const id of ["ise", "okayama", "ryozenji", "gokurakuji"]) {
+    await open(page, `/shrines/${id}`);
+    await expect(page.locator(".history-line li")).not.toHaveCount(0);
+    await expect(page.locator(".story-sources a")).not.toHaveCount(0);
+    await page.getByRole("link", { name: "ご利益", exact: true }).click();
+    await expect
+      .poll(() =>
+        page
+          .locator("#blessings")
+          .evaluate((el) => Math.round(el.getBoundingClientRect().top)),
+      )
+      .toBeLessThan(120);
+    if (id !== "ise") {
+      await expect(page.locator(".photo-credit")).toContainText(
+        "Wikimedia Commons",
+      );
+      await expect
+        .poll(() =>
+          page
+            .locator(".place-hero img")
+            .evaluate((el) => (el as HTMLImageElement).naturalWidth),
+        )
+        .toBeGreaterThan(0);
+      await expect(page.locator(".place-hero img")).toHaveAttribute(
+        "src",
+        `/places/${id}.jpg`,
+      );
+    } else {
+      await expect(page.locator(".photo-credit")).toContainText(
+        "実際の建物の写真ではありません",
+      );
+    }
+  }
+  await page.route("**/places/okayama.jpg", (route) => route.abort());
+  await open(page, "/shrines/okayama");
+  await expect(page.locator(".place-hero img")).toHaveAttribute(
+    "src",
+    "/shrine.svg",
+  );
+  await expect(page.locator(".place-hero img")).toHaveAttribute(
+    "alt",
+    /実景ではありません/,
+  );
+  await expect(
+    page.getByRole("link", { name: "御朱印を追加", exact: true }),
+  ).toBeVisible();
+  await open(page, "/shrines/sample-1");
+  await expect(page.locator(".visual-label")).toContainText("架空サンプル");
+  await expect(page.locator(".history-line")).toHaveCount(0);
+});

@@ -32,6 +32,8 @@ import {
   PhotoImage,
   dateTime,
 } from "../components/Primitives";
+import { stories } from "../data/stories";
+import { PlaceVisual, PhotoCredit } from "../components/PlaceVisual";
 const MapView = lazy(() => import("../components/MapView"));
 export function HomePage() {
   const { state } = useDemo();
@@ -46,58 +48,79 @@ export function HomePage() {
         </div>
         <div className="seal">縁</div>
       </div>
-      <div className="home-overview">
-        <div className="collection-summary">
-          <span className="eyebrow light">わたしの参拝図鑑</span>
-          <div className="summary-numbers">
-            <strong>
-              {collected}
-              <small> / {shrines.length}</small>
-            </strong>
-            <span>
-              寺社の御朱印を登録
-              <br />
-              デモ収録分
-            </span>
-          </div>
-          <div className="progress-track">
-            <i style={{ width: `${(collected / shrines.length) * 100}%` }} />
-          </div>
-          <div className="summary-foot">
-            <span>
-              デモ参拝 <b>{Object.keys(state.visits).length}</b> 寺社
-            </span>
-            <Link to="/book">
-              一冊をひらく <ArrowUpRight size={16} />
-            </Link>
-          </div>
-        </div>
-        <Link className="connection-card" to="/addresses">
-          <span className="icon-circle">
-            <Flower2 size={25} />
-          </span>
-          <div>
-            <span className="eyebrow">暮らしと、神社のつながり</span>
+      <div className="home-editorial">
+        <Link to="/shrines/ryozenji" className="journey-feature">
+          <PlaceVisual shrine={shrines[2]} eager />
+          <div className="journey-copy">
+            <span className="eyebrow">今、訪れたい場所 / 徳島</span>
             <h2>
-              {connected?.ids[0]
-                ? `${shrineById(connected.ids[0])?.name}とのご縁`
-                : "自分の神社を知る"}
-            </h2>
-            <p>
-              現住所と生まれた地域から。
+              一歩から、
               <br />
-              町域のテスト例で、ご縁をたどります。
-            </p>
-            <span className="text-link">
-              {connected ? "照合結果を見る" : "テスト例を選んでみる"}{" "}
-              <ChevronRight size={15} />
+              はじまるご縁。
+            </h2>
+            <p>四国第一番・霊山寺をめぐる</p>
+            <span className="journey-more">
+              この場所の物語へ <ArrowUpRight size={18} />
             </span>
           </div>
+          <span className="journey-number">01 — 04</span>
+          <span className="feature-credit">
+            Photo: 663highland · CC BY 2.5（出典は詳細へ）
+          </span>
         </Link>
+        <div className="home-overview">
+          <div className="collection-summary">
+            <span className="eyebrow light">わたしの参拝図鑑</span>
+            <div className="summary-numbers">
+              <strong>
+                {collected}
+                <small> / {shrines.length}</small>
+              </strong>
+              <span>
+                寺社の御朱印を登録
+                <br />
+                デモ収録分
+              </span>
+            </div>
+            <div className="progress-track">
+              <i style={{ width: `${(collected / shrines.length) * 100}%` }} />
+            </div>
+            <div className="summary-foot">
+              <span>
+                デモ参拝 <b>{Object.keys(state.visits).length}</b> 寺社
+              </span>
+              <Link to="/book">
+                一冊をひらく <ArrowUpRight size={16} />
+              </Link>
+            </div>
+          </div>
+          <Link className="connection-card" to="/addresses">
+            <span className="icon-circle">
+              <Flower2 size={25} />
+            </span>
+            <div>
+              <span className="eyebrow">暮らしと、神社のつながり</span>
+              <h2>
+                {connected?.ids[0]
+                  ? `${shrineById(connected.ids[0])?.name}とのご縁`
+                  : "自分の神社を知る"}
+              </h2>
+              <p>
+                現住所と生まれた地域から。
+                <br />
+                町域のテスト例で、ご縁をたどります。
+              </p>
+              <span className="text-link">
+                {connected ? "照合結果を見る" : "テスト例を選んでみる"}{" "}
+                <ChevronRight size={15} />
+              </span>
+            </div>
+          </Link>
+        </div>
       </div>
       <Section title="次のご縁を探す" to="/search" link="寺社を探す">
         <div className="cards-grid">
-          {shrines.slice(0, 2).map((s) => (
+          {shrines.slice(0, 4).map((s) => (
             <ShrineCard
               key={s.id}
               shrine={s}
@@ -323,7 +346,7 @@ export function SearchPage() {
         </div>
       </div>
       <p className="fine">
-        デモ収録24件：公式資料参照4件・架空サンプル20件。写真はイラストです。
+        デモ収録24件：公式資料参照4件・架空サンプル20件。実景写真とイメージイラストを使用しています。
       </p>
       {mode === "map" && (
         <Suspense fallback={<p>地図を読み込んでいます…</p>}>
@@ -355,29 +378,47 @@ export function ShrinePage() {
   const { state, mutate, busy } = useDemo();
   if (!s) return <PageTitle title="寺社が見つかりません" />;
   const fav = state.favorites.includes(s.id);
+  const story = stories[s.id];
   const ios =
     /iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   const destination = encodeURIComponent(s.name + " " + s.address);
   return (
     <>
-      <div className="detail-heading">
-        <span className="eyebrow">
-          {s.region} · {s.kind} ·{" "}
-          {s.fictional ? "架空サンプル" : "公式情報を参照"}
-        </span>
-        <h1>{s.name}</h1>
-        <p>{s.reading}</p>
-      </div>
-      <div className="detail-cover">
-        <img
-          src={s.kind === "寺院" ? "/temple.svg" : "/shrine.svg"}
-          alt="寺社をイメージしたイラスト（実際の建物の写真ではありません）"
-        />
-        <div className="cover-caption">
-          {s.fictional ? "架空の寺社" : "寺社のイメージイラスト"}
+      <div
+        className={`place-hero ${story?.photo ? "has-photo" : "illustrated"}`}
+      >
+        <PlaceVisual key={s.id} shrine={s} eager />
+        <div className="place-hero-shade" />
+        <div className="place-hero-copy">
+          <span className="eyebrow">
+            {s.region} · {s.city} / {s.kind}
+          </span>
+          <h1>{s.name}</h1>
+          <p className="place-reading">{s.reading}</p>
+          <p className="place-subtitle">
+            {story?.subtitle || "一冊に残す、架空の参拝体験。"}
+          </p>
         </div>
+        <span className="place-seal">{s.fictional ? "見本" : "参拝"}</span>
+        {!story?.photo && (
+          <span className="visual-label">
+            {s.fictional ? "架空サンプル · イラスト" : "イメージイラスト"}
+          </span>
+        )}
       </div>
+      <PhotoCredit shrine={s} />
+      <nav className="place-tabs" aria-label="寺社詳細の目次">
+        {story && (
+          <>
+            <a href="#history">歴史・由緒</a>
+            <a href="#blessings">ご利益</a>
+          </>
+        )}
+        <a href="#deities">{s.kind === "寺院" ? "ご本尊" : "ご祭神"}</a>
+        <a href="#visit-record">参拝の記録</a>
+        <a href="#access">アクセス</a>
+      </nav>
       <div className="toolbar">
         <button
           disabled={busy}
@@ -400,12 +441,83 @@ export function ShrinePage() {
           {state.visits[s.id] ? "デモ参拝済み" : "未参拝"}
         </span>
       </div>
-      <p className="prose">{s.description}</p>
+      <p className="place-lead">{story?.lead || s.description}</p>
+      {story && (
+        <>
+          <div className="place-facts">
+            <div>
+              <span>創建・歴史</span>
+              <strong>{story.era}</strong>
+            </div>
+            <div>
+              <span>
+                {s.kind === "寺院" ? "ご本尊・宗派" : "お祀りする神様"}
+              </span>
+              <strong>{story.identity}</strong>
+            </div>
+          </div>
+          <section className="story-section" id="history">
+            <div className="story-heading">
+              <span>01 / HISTORY</span>
+              <h2>この場所が、歩んだ時。</h2>
+              <p>歴史・由緒</p>
+            </div>
+            <div className="story-body">
+              {story.history.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+              <ol className="history-line">
+                {story.timeline.map((t) => (
+                  <li key={t.year}>
+                    <strong>{t.year}</strong>
+                    <span>{t.text}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+          <section className="blessing-panel" id="blessings">
+            <div className="story-heading">
+              <span>02 / PRAYERS</span>
+              <h2>ここで願うこと。</h2>
+              <p>ご利益・伝わる信仰</p>
+            </div>
+            <div>
+              <div className="blessing-tags">
+                {story.blessings.map((b) => (
+                  <span key={b}>
+                    <Flower2 size={16} />
+                    {b}
+                  </span>
+                ))}
+              </div>
+              <p>{story.belief}</p>
+              <small>ご利益は信仰や伝承としての紹介です。</small>
+            </div>
+          </section>
+          <section className="highlights">
+            <div className="story-heading">
+              <span>境内を歩く</span>
+              <h2>知ってから訪れたい、見どころ。</h2>
+            </div>
+            <div className="highlight-grid">
+              {story.highlights.map((h, i) => (
+                <article key={h.title}>
+                  <span className="highlight-number">0{i + 1}</span>
+                  <h3>{h.title}</h3>
+                  <p>{h.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
       <Notice>
         {s.fictional
           ? "架空サンプルです。所在地・祭神・地図も操作用で、実際には訪問できません。"
           : "所在地・ご祭神等は公式資料を参照。受付時間・料金・現地入口は未確認です。参拝前に公式案内をご確認ください。"}
       </Notice>
+      <div id="deities" />
       <Section title={s.kind === "寺院" ? "ご本尊を知る" : "ご祭神を知る"}>
         <div className="god-links">
           {s.gods.map((id) => {
@@ -425,6 +537,7 @@ export function ShrinePage() {
           })}
         </div>
       </Section>
+      <div id="visit-record" />
       <Section title="この場所で、記録する">
         <div className="actions">
           <Link className="button primary" to={`/photos/new?shrine=${s.id}`}>
@@ -454,6 +567,7 @@ export function ShrinePage() {
             </Link>
           ))}
       </Section>
+      <div id="access" />
       <Section title="所在地と経路案内">
         <p>
           <MapPin size={16} />
@@ -489,6 +603,25 @@ export function ShrinePage() {
               寺社名と所在地を送信します。登録した住所は出発地に使いません。入口・駐車場は現地で確認してください。
             </p>
           </>
+        )}
+        {story && (
+          <div className="story-sources">
+            <h3>このページの出典</h3>
+            <p>
+              公式資料をもとに要約。創建にまつわる話は伝承として記載しています。確認日：2026-09-17
+            </p>
+            {story.sources.map((source) => (
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noreferrer"
+                key={source.url}
+              >
+                {source.title}
+                <ArrowUpRight size={14} />
+              </a>
+            ))}
+          </div>
         )}
         {s.source && (
           <p className="source">
@@ -595,7 +728,7 @@ export function GodPage() {
             <p className="fine">
               {god.kind === "ご本尊"
                 ? "寺院のご本尊を神様の家系図には接続しません。"
-                : "確認できた祭祀関係のみ表示しています。親子・兄弟関係は未確認です。"}
+                : "この図は、資料で確認できた寺社とご祭神のつながりを示しています。"}
               {god.fictional ? " この関係は架空サンプルです。" : ""}
             </p>
           </>

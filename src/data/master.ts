@@ -1,5 +1,5 @@
 import type { God, Shrine } from "../types";
-export const CHECKED = "2026-09-15";
+export const CHECKED = "2026-09-17";
 export const ISE_SOURCE = "https://www.okayama-jinjacho.or.jp/search/16412/";
 export const GOD_SOURCE = "https://www.isejingu.or.jp/about/";
 export const gods: God[] = [
@@ -51,18 +51,28 @@ export const gods: God[] = [
     id: `okayama-${i}`,
     name,
     reading: [
-      "やまとととひももそひめのみこと",
+      "やまとととびももそひめのみこと",
       "やまとたけるのみこと",
       "おおやまくいのみこと",
       "おおきびつひこのみこと",
       "うかのみたまのみこと",
-      "読み方は未確認",
-      "読み方は未確認",
+      "たけやすびのみこと",
+      "いもひめのみこと",
     ][i],
     kind: "神様" as const,
-    description:
-      "岡山県神社庁の岡山神社の御祭神一覧に記載されています。詳しい由来・関係は未確認です。",
-    source: "https://www.okayama-jinjacho.or.jp/search/16434/",
+    description: [
+      "岡山神社の主祭神。公式由緒では孝霊天皇の皇女、吉備津彦命の姉とされ、知恵と予見にまつわる伝承が紹介されています。",
+      "岡山神社の副祭神。公式の祈祷案内では、勝負事や社運隆昌を願う信仰と結びつけて紹介されています。",
+      "岡山神社の副祭神。公式の由緒では山王神と紹介されています。",
+      "岡山神社の副祭神。神社の公式案内では吉備津彦命と表記され、主祭神・倭迹迹日百襲姫命の弟と紹介されています。",
+      "岡山神社の副祭神。公式の由緒では稲荷大神と紹介されています。",
+      "岡山神社の副祭神。岡山藩主・池田光政をお祀りする名前として、公式の由緒に記載されています。",
+      "岡山神社の副祭神。公式の由緒に名前と読み方が記載されています。詳しい伝承は今回の参照資料には記載がありません。",
+    ][i],
+    source:
+      i === 1
+        ? "https://www.okayama-jinjya.or.jp/kitou.html"
+        : "https://www.okayama-jinjya.or.jp/about.html",
   })),
   {
     id: "sample-kami",

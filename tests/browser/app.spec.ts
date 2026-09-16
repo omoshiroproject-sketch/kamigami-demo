@@ -372,6 +372,9 @@ test("全データリセットは確認を要求し写真も初期化する", as
   ).toBeDisabled();
   await page.getByLabel("写真も削除されることを確認しました").check();
   await page.getByRole("button", { name: "すべて削除して初期化" }).click();
+  await expect(page.getByRole("status")).toContainText(
+    "初期データに戻しました",
+  );
   await point(page, 300);
   await open(page, "/book");
   await expect(page.locator(".photo-card")).toHaveCount(0);

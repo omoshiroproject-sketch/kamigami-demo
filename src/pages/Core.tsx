@@ -253,6 +253,7 @@ export function SearchPage() {
           <label>
             地域
             <select
+              aria-label="地域"
               value={region}
               onChange={(e) => change("region", e.target.value)}
             >
@@ -265,6 +266,7 @@ export function SearchPage() {
           <label>
             寺社の種類
             <select
+              aria-label="寺社の種類"
               value={kind}
               onChange={(e) => change("kind", e.target.value)}
             >
@@ -276,6 +278,7 @@ export function SearchPage() {
           <label>
             参拝の記録
             <select
+              aria-label="参拝の記録"
               value={visited}
               onChange={(e) => change("visited", e.target.value)}
             >

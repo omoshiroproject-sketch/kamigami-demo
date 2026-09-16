@@ -166,6 +166,9 @@ test("四種類の住所照合・変更・削除は再読込後も整合する",
     .selectOption("unknown");
   await expect(page.getByText("未整備", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "現住所のテスト例を削除" }).click();
+  await expect(
+    page.getByLabel("現住所のテスト例", { exact: true }),
+  ).toHaveValue("");
   await page.reload();
   await expect(
     page.getByLabel("現住所のテスト例", { exact: true }),
@@ -233,6 +236,7 @@ test("投稿とコメントの保存・削除・非表示", async ({ page }) => 
     .filter({ hasText: "デモで最初の一頁を保存しました。" });
   await post.getByPlaceholder("コメントを残す").fill("あとで見返そう。");
   await post.getByRole("button", { name: "保存", exact: true }).click();
+  await expect(post).toContainText("あとで見返そう。");
   await page.reload();
   await expect(post).toContainText("あとで見返そう。");
   await post.getByRole("button", { name: "コメントを削除" }).click();
@@ -247,24 +251,20 @@ test("投稿とコメントの保存・削除・非表示", async ({ page }) => 
 test("手動PNG登録・非対応形式と破損画像・入力維持", async ({ page }) => {
   await open(page, "/photos/new");
   await page.getByLabel("ひとことメモ").fill("失敗しても残る入力");
-  await page
-    .getByLabel("写真を選ぶ", { exact: true })
-    .setInputFiles({
-      name: "sample.heic",
-      mimeType: "image/heic",
-      buffer: Buffer.from("invalid"),
-    });
+  await page.getByLabel("写真を選ぶ", { exact: true }).setInputFiles({
+    name: "sample.heic",
+    mimeType: "image/heic",
+    buffer: Buffer.from("invalid"),
+  });
   await expect(page.getByRole("alert")).toContainText("JPEG");
   await expect(page.getByLabel("ひとことメモ")).toHaveValue(
     "失敗しても残る入力",
   );
-  await page
-    .getByLabel("写真を選ぶ", { exact: true })
-    .setInputFiles({
-      name: "broken.png",
-      mimeType: "image/png",
-      buffer: Buffer.from("invalid"),
-    });
+  await page.getByLabel("写真を選ぶ", { exact: true }).setInputFiles({
+    name: "broken.png",
+    mimeType: "image/png",
+    buffer: Buffer.from("invalid"),
+  });
   await expect(page.getByRole("alert")).toContainText("読み込めません");
   await page
     .getByLabel("写真を選ぶ", { exact: true })

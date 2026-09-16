@@ -96,7 +96,7 @@ npm run test:e2e  # Google Chromeが必要。独立したテスト用プロフ�
 - `npm run build`：成功。TypeScript検査とVite本番ビルド、`dist`生成。
 - Codex内ブラウザで主要操作、再読み込みと保存、地図失敗時の代替、現在地取得失敗を確認。
 - 375・390・768・1440px × 18画面＝**72通り**で横はみ出しなし。
-- PlaywrightのE2Eシナリオ13本を用意。ただし今回の実行環境では独立Chrome起動がSIGABRTで停止し、テスト本体は実行できていません。成功とは記載しません。
+- GitHub ActionsのLinux Chromiumで **Playwright E2E 13件すべて成功**。[検証実行](https://github.com/omoshiroproject-sketch/kamigami-demo/actions/runs/35135979143)。このMacでは独立Chromeランナーの起動に制約があるため、Mac上の操作はCodex内ブラウザで確認しました。
 
 ## 後続の本番実装・未確認
 

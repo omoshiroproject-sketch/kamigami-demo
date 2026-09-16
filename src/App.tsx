@@ -60,20 +60,20 @@ function Shell() {
   const currentKey = useRef(location.key);
   const [update, setUpdate] = useState(false);
   useLayoutEffect(() => {
+    const target = positions.get(location.key) || 0;
     currentKey.current = location.key;
-    const t = requestAnimationFrame(() =>
-      window.scrollTo(0, positions.get(location.key) || 0),
-    );
-    return () => {
-      positions.set(location.key, window.scrollY);
-      cancelAnimationFrame(t);
-    };
+    window.scrollTo(0, target);
   }, [location.key]);
   useEffect(() => {
     history.scrollRestoration = "manual";
     const save = () => positions.set(currentKey.current, window.scrollY);
     window.addEventListener("scroll", save, { passive: true });
-    return () => window.removeEventListener("scroll", save);
+    // Capture before routing changes the document height and clamps scrollY.
+    document.addEventListener("click", save, true);
+    return () => {
+      window.removeEventListener("scroll", save);
+      document.removeEventListener("click", save, true);
+    };
   }, []);
   useEffect(() => {
     let live = true;

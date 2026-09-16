@@ -47,6 +47,7 @@ test("検索→祭神→写真→図鑑→ミッション→交換と再読込",
     .getByLabel("気づいたこと、覚えておきたいこと")
     .fill("食の神様とのつながりを知った。");
   await page.getByRole("button", { name: "ノートを保存", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("ノートを保存しました");
   await page.reload();
   await expect(page.getByLabel("気づいたこと、覚えておきたいこと")).toHaveValue(
     "食の神様とのつながりを知った。",
@@ -200,6 +201,9 @@ test("運営で作成・下書き・公開・終了、イベント申込と参�
   await page.getByRole("button", { name: "デモ運営を開始" }).click();
   await page.getByRole("button", { name: "イベント", exact: true }).click();
   await page.getByLabel("試験用の散歩会の状態").selectOption("公開");
+  await expect(page.getByRole("status")).toContainText(
+    "公開状態を更新しました",
+  );
   await page.reload();
   await page.getByRole("button", { name: "デモ運営を開始" }).click();
   await page.getByRole("button", { name: "イベント", exact: true }).click();
@@ -220,6 +224,9 @@ test("運営で作成・下書き・公開・終了、イベント申込と参�
   await page.getByRole("button", { name: "デモ運営を開始" }).click();
   await page.getByRole("button", { name: "イベント", exact: true }).click();
   await page.getByLabel("試験用の散歩会の状態").selectOption("終了");
+  await expect(page.getByRole("status")).toContainText(
+    "公開状態を更新しました",
+  );
   await open(page, "/events");
   await expect(
     page.locator(".event-card").filter({ hasText: "試験用の散歩会" }),

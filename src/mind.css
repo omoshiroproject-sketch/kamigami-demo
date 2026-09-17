@@ -1,31 +1,19 @@
 /* Quiet, tactile journal surfaces for the Shinto × mindset experience. */
-.mind-cover .cover-copy h1 {
-  font-size: clamp(28px, 3vw, 39px);
-  letter-spacing: 0.03em;
-}
-.mind-cover .cover-copy h1 small {
-  display: block;
-  font-size: 0.47em;
-  font-weight: 400;
-  letter-spacing: 0.09em;
-  margin-bottom: 12px;
-}
 .mind-home {
-  margin: 38px 0 12px;
-  padding: 30px 0;
+  margin: 0 0 12px;
+  padding: 6px 0 30px;
   border-bottom: 1px solid var(--line);
 }
 .mind-home-heading {
   margin-bottom: 20px;
 }
-.mind-home-heading h2 {
+.mind-home-heading h1 {
   font-size: 29px;
   margin: 6px 0;
   letter-spacing: 0.06em;
 }
-.mind-home-heading p {
-  font-size: 13px;
-  color: #686b61;
+.home-shrine-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .mind-home-grid {
   display: grid;
@@ -788,21 +776,14 @@
   }
 }
 @media (max-width: 600px) {
-  .mind-cover .cover-copy h1 {
-    font-size: 33px;
-  }
-  .mind-cover .cover-copy h1 small {
-    font-size: 17px;
-  }
   .mind-home {
-    margin-top: 20px;
-    padding: 20px 0;
+    padding: 4px 0 20px;
   }
-  .mind-home-heading h2 {
+  .mind-home-heading h1 {
     font-size: 24px;
   }
-  .mind-home-heading p {
-    font-size: 11px;
+  .home-shrine-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .mind-home-record,
   .mind-home-roadmap {

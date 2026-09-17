@@ -46,47 +46,6 @@ export function HomePage() {
         <span>心を整える、参拝の旅帖</span>
         <span>知る、誓う、感謝する。</span>
       </div>
-      <section
-        className="travel-cover mind-cover"
-        aria-label="参拝から始まる心の記録"
-      >
-        <Link
-          to="/shrines/ise-jingu"
-          className="cover-photo"
-          aria-label="伊勢神宮 内宮の物語を読む"
-        >
-          <PlaceVisual shrine={shrineById("ise-jingu")!} eager />
-          <span className="cover-label">今、訪れたい場所</span>
-          <span className="cover-place">
-            三重・伊勢<span>ISE JINGU</span>
-          </span>
-          <span className="cover-credit">
-            Photo: Zairon · CC BY 4.0（出典は詳細へ）
-          </span>
-        </Link>
-        <div className="cover-copy">
-          <span className="cover-index">SHINTO × MINDSET</span>
-          <h1>
-            <small>御朱印を「集める」から</small>
-            貴方が「整う」。
-          </h1>
-          <p>
-            その場所で、何を誓い、何に感謝したか。
-            <br />
-            神様を知る旅を、自分を知る時間へ。
-          </p>
-          <div className="cover-destination">
-            <span>伊勢神宮</span>
-            <small>五十鈴川のほとり、祈りをたどる</small>
-          </div>
-          <Link to="/mind/new" className="button primary">
-            心の記録を書く <ArrowUpRight size={18} />
-          </Link>
-          <span className="cover-stamp" aria-hidden="true">
-            誓いと感謝
-          </span>
-        </div>
-      </section>
       <MindSummary />
       <div className="journey-tools">
         <Link to="/search">
@@ -152,8 +111,8 @@ export function HomePage() {
         </Link>
       </div>
       <Section title="次のご縁を探す" to="/search" link="寺社を探す">
-        <div className="cards-grid">
-          {["ise-jingu", "okayama", "ryozenji", "gokurakuji"]
+        <div className="cards-grid home-shrine-grid">
+          {["okayama", "ryozenji", "gokurakuji"]
             .map((id) => shrineById(id)!)
             .map((s) => (
               <ShrineCard

@@ -39,9 +39,8 @@ export function MindSummary() {
   return (
     <section className="mind-home">
       <div className="mind-home-heading">
-        <span className="eyebrow">SHINTO × MINDSET</span>
-        <h2>ご縁を、心の変化へ。</h2>
-        <p>誓いを立てる。感謝を見つける。日々の自分を振り返る。</p>
+        <span className="eyebrow">MY JOURNEY</span>
+        <h1>わたしの記録</h1>
       </div>
       <div className="mind-home-grid">
         <Link className="mind-home-record" to="/mind">

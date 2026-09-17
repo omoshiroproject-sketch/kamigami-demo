@@ -472,6 +472,7 @@ function MindEditor({
             <label>
               記録日
               <input
+                aria-label="記録日"
                 type="date"
                 required
                 max={jstDate()}
@@ -482,6 +483,7 @@ function MindEditor({
             <label>
               記録する場所
               <select
+                aria-label="記録する場所"
                 value={entry.shrineId}
                 onChange={(e) => change("shrineId", e.target.value)}
               >
@@ -543,6 +545,7 @@ function MindEditor({
           <label>
             感謝したこと
             <textarea
+              aria-label="感謝したこと"
               rows={3}
               maxLength={1000}
               placeholder="例：忙しい朝、家族がかけてくれた一言。"
@@ -556,6 +559,7 @@ function MindEditor({
           <label>
             わたしの誓い（宣言）
             <textarea
+              aria-label="わたしの誓い（宣言）"
               rows={3}
               maxLength={1000}
               placeholder="例：大切な人に、感謝を言葉で伝えます。"
@@ -566,6 +570,7 @@ function MindEditor({
           <label>
             日常で踏み出す、小さな一歩
             <input
+              aria-label="日常で踏み出す、小さな一歩"
               maxLength={1000}
               placeholder="例：今夜、ありがとうのメッセージを送る。"
               value={entry.nextStep}
@@ -577,6 +582,7 @@ function MindEditor({
               <label>
                 誓いの現在地
                 <select
+                  aria-label="誓いの現在地"
                   value={entry.pledgeStatus}
                   onChange={(e) =>
                     change("pledgeStatus", e.target.value as PledgeStatus)
@@ -590,6 +596,7 @@ function MindEditor({
               <label>
                 実践して感じたこと
                 <textarea
+                  aria-label="実践して感じたこと"
                   rows={3}
                   maxLength={1000}
                   placeholder="後日、できたことや気づいたことを振り返れます。"
@@ -605,6 +612,7 @@ function MindEditor({
           <label>
             気づいたこと・今の気持ち
             <textarea
+              aria-label="気づいたこと・今の気持ち"
               rows={4}
               maxLength={1000}
               placeholder="参拝の前後で変わった気持ちや、今日の自分のこと。"
@@ -906,6 +914,7 @@ function ManifestoEditor() {
       <label>
         私が大切にしたい価値観
         <textarea
+          aria-label="私が大切にしたい価値観"
           rows={3}
           maxLength={1000}
           value={draft.values}
@@ -916,6 +925,7 @@ function ManifestoEditor() {
       <label>
         周囲や社会に届けたいこと
         <textarea
+          aria-label="周囲や社会に届けたいこと"
           rows={3}
           maxLength={1000}
           value={draft.contribution}
@@ -926,6 +936,7 @@ function ManifestoEditor() {
       <label>
         これからの宣言
         <textarea
+          aria-label="これからの宣言"
           required
           rows={4}
           maxLength={1000}

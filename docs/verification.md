@@ -70,3 +70,5 @@
 - ホーム、伊勢神宮の内宮・外宮、岡山の伊勢神社、岡山神社、霊山寺、検索、御朱印帳、写真追加、神様詳細、住所画面が対象。
 - 内宮・外宮と岡山の伊勢神社のIDを区別するE2Eを追加。所在地、御祭神、相互リンク、御朱印保存先、お気に入り／参拝状態が混ざらないことを検証します。写真と由緒の検証は実在6件に拡張。
 - 最新の15件のE2E実行結果は[PR #1のChecks](https://github.com/omoshiroproject-sketch/kamigami-demo/pull/1/checks)で確認できます。Mac実機のCodex内ブラウザとCIのLinux Chromiumは別の検証です。
+
+[修正版のGitHub Actions](https://github.com/omoshiroproject-sketch/kamigami-demo/actions/runs/35171248279)（`41cb362`）で、27単体テスト・本番ビルド・15件のE2Eがすべて成功しました。

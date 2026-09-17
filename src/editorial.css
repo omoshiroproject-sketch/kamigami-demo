@@ -460,6 +460,7 @@ button,
 }
 .segmented button.selected {
   background: var(--ink);
+  color: #fff8e9;
 }
 .bottom-nav {
   margin-inline: auto;

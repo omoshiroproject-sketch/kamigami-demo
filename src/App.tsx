@@ -19,7 +19,7 @@ import {
   Home,
   Compass,
   BookOpen,
-  Flag,
+  Heart,
   User,
   Flower2,
   ArrowUpRight,
@@ -43,13 +43,14 @@ import {
   TicketsPage,
 } from "./pages/Activity";
 import { ProfilePage, AddressPage, CommunityPage } from "./pages/Personal";
+import { MindPage, MindForm, RoadmapPage } from "./pages/Mind";
 import { Back, PageTitle } from "./components/Primitives";
 const AdminPage = lazy(() => import("./pages/Admin"));
 const tabs = [
   ["/", "ホーム", Home],
   ["/search", "探す", Compass],
   ["/book", "御朱印帳", BookOpen],
-  ["/missions", "ミッション", Flag],
+  ["/mind", "心の記録", Heart],
   ["/profile", "マイページ", User],
 ] as const;
 const positions = new Map<string, number>();
@@ -141,6 +142,10 @@ function Shell() {
             <Route path="/photos/new" element={<PhotoForm />} />
             <Route path="/photos/:id/edit" element={<PhotoForm />} />
             <Route path="/photos/:id" element={<PhotoDetail />} />
+            <Route path="/mind" element={<MindPage />} />
+            <Route path="/mind/new" element={<MindForm />} />
+            <Route path="/mind/:id/edit" element={<MindForm />} />
+            <Route path="/roadmap" element={<RoadmapPage />} />
             <Route path="/missions" element={<MissionsPage />} />
             <Route path="/rewards" element={<RewardsPage />} />
             <Route path="/events" element={<EventsPage />} />
@@ -165,7 +170,7 @@ function Shell() {
           </Routes>
         </Suspense>
         <footer className="page-footer">
-          日々の参拝を、あなたの一冊に。
+          御朱印を「集める」から、貴方が「整う」。
           <br />
           <span>端末内保存の体験デモ · 神々の系譜</span>
         </footer>

@@ -34,6 +34,7 @@ import {
 } from "../components/Primitives";
 import { stories } from "../data/stories";
 import { PlaceVisual, PhotoCredit } from "../components/PlaceVisual";
+import { MindSummary } from "./Mind";
 const MapView = lazy(() => import("../components/MapView"));
 export function HomePage() {
   const { state } = useDemo();
@@ -42,10 +43,13 @@ export function HomePage() {
   return (
     <>
       <div className="edition-line">
-        <span>参拝の旅帖</span>
-        <span>めぐる、知る、つながる。</span>
+        <span>心を整える、参拝の旅帖</span>
+        <span>知る、誓う、感謝する。</span>
       </div>
-      <section className="travel-cover" aria-label="伊勢神宮の特集">
+      <section
+        className="travel-cover mind-cover"
+        aria-label="参拝から始まる心の記録"
+      >
         <Link
           to="/shrines/ise-jingu"
           className="cover-photo"
@@ -61,31 +65,29 @@ export function HomePage() {
           </span>
         </Link>
         <div className="cover-copy">
-          <span className="cover-index">
-            FEATURE <b>01</b>
-          </span>
+          <span className="cover-index">SHINTO × MINDSET</span>
           <h1>
-            心がほどける、
-            <br />
-            神社の旅へ。
+            <small>御朱印を「集める」から</small>
+            貴方が「整う」。
           </h1>
           <p>
-            鳥居の向こうに、どんな物語があるだろう。
+            その場所で、何を誓い、何に感謝したか。
             <br />
-            神様を知り、歩いた記憶を、一冊に。
+            神様を知る旅を、自分を知る時間へ。
           </p>
           <div className="cover-destination">
             <span>伊勢神宮</span>
             <small>五十鈴川のほとり、祈りをたどる</small>
           </div>
-          <Link to="/shrines/ise-jingu" className="button primary">
-            伊勢神宮を知る <ArrowUpRight size={18} />
+          <Link to="/mind/new" className="button primary">
+            心の記録を書く <ArrowUpRight size={18} />
           </Link>
           <span className="cover-stamp" aria-hidden="true">
-            旅と祈り
+            誓いと感謝
           </span>
         </div>
       </section>
+      <MindSummary />
       <div className="journey-tools">
         <Link to="/search">
           <span className="tool-number">01</span>
@@ -610,6 +612,10 @@ export function ShrinePage() {
       <div id="visit-record" />
       <Section title="この場所で、記録する">
         <div className="actions">
+          <Link className="button" to={`/mind/new?shrine=${s.id}`}>
+            <Heart size={17} />
+            この場所の誓い・感謝を残す
+          </Link>
           <Link className="button primary" to={`/photos/new?shrine=${s.id}`}>
             <Plus size={17} />
             御朱印を追加

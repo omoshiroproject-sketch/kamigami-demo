@@ -5,6 +5,17 @@ interface DemoDB extends DBSchema {
   state: { key: string; value: State };
   media: { key: string; value: Media };
 }
+// Additive migration: preserve existing photos, notes, and media without changing the DB name.
+function withMindDefaults(state: State): State {
+  state.mindEntries ??= [];
+  state.manifesto ??= {
+    values: "",
+    contribution: "",
+    declaration: "",
+    updatedAt: "",
+  };
+  return state;
+}
 export interface Repository {
   read(): Promise<State>;
   update(change: (s: State) => void): Promise<State>;
@@ -36,8 +47,9 @@ export function createRepository(
     const conn = await db;
     const tx = conn.transaction(["state", "media"], "readwrite");
     try {
-      const state =
-        (await tx.objectStore("state").get("main")) ?? initialState();
+      const state = withMindDefaults(
+        (await tx.objectStore("state").get("main")) ?? initialState(),
+      );
       change(state);
       await tx.objectStore("state").put(state, "main");
       if (mediaChange) await mediaChange(tx);
@@ -57,7 +69,9 @@ export function createRepository(
   return {
     read: async () => {
       const found = await (await db).get("state", "main");
-      return found ?? transaction(() => {});
+      return found?.mindEntries && found?.manifesto
+        ? found
+        : transaction(() => {});
     },
     update: (change) => transaction(change),
     media: async (id) => (await db).get("media", id),

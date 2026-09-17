@@ -73,6 +73,14 @@ export function BookPage() {
       <Notice>
         写真はこのブラウザ内に保存されます。図鑑はデモ収録分の進捗です。御朱印の登録だけでは参拝済みになりません。
       </Notice>
+      <Link className="mind-roadmap-link" to="/roadmap">
+        <BookOpen size={24} />
+        <div>
+          <b>御朱印から、心を育てる旅へ。</b>
+          <small>異なる寺社の数で進む、10・22・33・50のロードマップ</small>
+        </div>
+        <ArrowUpRight size={20} />
+      </Link>
       <div className="segmented wide">
         <button
           className={mode === "shrine" ? "selected" : ""}
@@ -459,6 +467,12 @@ export function PhotoDetail() {
           <h2>この一頁の思い出</h2>
           <p className="prose pre-wrap">{p.note || "メモはまだありません。"}</p>
           <div className="stack">
+            <Link
+              className="button"
+              to={`/mind/new?shrine=${p.shrineId}${p.date ? `&date=${p.date}` : ""}`}
+            >
+              この参拝の誓い・感謝を残す
+            </Link>
             <Link className="button primary" to={`/photos/${p.id}/edit`}>
               寺社・日付・写真を修正
             </Link>

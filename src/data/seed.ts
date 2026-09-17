@@ -27,6 +27,8 @@ export function initialState(now = new Date()): State {
     notes: {},
     addresses: { current: "", birth: "" },
     photos: [],
+    mindEntries: [],
+    manifesto: { values: "", contribution: "", declaration: "", updatedAt: "" },
     joined: {},
     missions: [
       {

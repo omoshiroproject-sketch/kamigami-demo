@@ -1,13 +1,13 @@
 # Netlifyで公開する
 
-このアプリはリポジトリのルートにあるVite SPAです。外部APIキーは不要です。Netlifyでのアカウント連携と公開ボタンの操作は利用者が行ってください。
+このアプリはリポジトリのルートにあるVite SPAです。外部APIキーは不要です。現在は <https://kamigaminokeifu.netlify.app/> で公開済みです。下記の新規連携手順は、新しい環境を作る場合に使います。
 
 ## 入力する設定
 
 | 項目 | 値 |
 | --- | --- |
 | Repository | `omoshiroproject-sketch/kamigami-demo` |
-| Branch | デモを確認するなら `codex/kamigami-demo`。PRをマージ後は `main` |
+| Branch | `codex/kamigami-demo`（現在の公開対象。`main` は元の仕様書） |
 | Base directory | **空欄** |
 | Build command | `npm run build` |
 | Publish directory | `dist` |
@@ -22,7 +22,7 @@
 
 ## 公開後の確認
 
-- `/shrines/ise`、`/gods/amaterasu`、`/photos/new`をURLから直接開き、再読み込みしても404にならない。
+- `/shrines/ise`、`/gods/amaterasu`、`/photos/new`、`/mind`、`/mind/new`、`/roadmap`をURLから直接開き、再読み込みしても404にならない。
 - `/icon.svg`、`/icon-192.png`、`/icon-512.png`、`/manifest.webmanifest`、`/samples/sample-1.svg`、`/version.json`がHTMLではなく該当ファイルとして配信される。
 - 神社の地図を表示し、`© OpenStreetMap contributors`の帰属表示が見える。
 - 御朱印写真・ノート・お気に入り・ポイントが同じURLで再読み込み後も残る。
@@ -32,6 +32,8 @@
 `[[redirects]] from="/*" to="/index.html" status=200`は強制上書きにしていないため、存在する静的資産を優先して配信します。ローカルのViteプレビューでも深いURLと静的資産を確認しましたが、Netlifyの実配信は公開後に確認してください。
 
 ## 更新
+
+変更をローカルで確認・ビルドし、GitHubの `codex/kamigami-demo` へコミットを反映すると、Netlifyが自動ビルドします。管理画面のDeploysがPublishedになった後、公開URLを再読み込みしてください。ローカルで編集しただけでは公開サイトは変わりません。今回の心の記録には、追加の環境変数・外部データベース・ファイルの手動アップロードは不要です。
 
 ビルドごとに`version.json`とアプリ内の版番号を生成します。開いているアプリは60秒ごとに版を確認し、新版があれば保存後の更新を案内します。Service Workerは使っていないため、古いアプリ資産を独自キャッシュから復活させません。写真・個人記録はIndexedDBにあり、通常のコード更新では削除しません。
 

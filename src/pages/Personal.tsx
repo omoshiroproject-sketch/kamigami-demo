@@ -10,6 +10,9 @@ import {
   ChevronRight,
   Download,
   MessageCircle,
+  Heart,
+  Sprout,
+  Flag,
 } from "lucide-react";
 import { useDemo } from "../context";
 import { addressExamples, addressMatcher } from "../services/address";
@@ -46,6 +49,14 @@ export function ProfilePage() {
       </div>
       <div className="link-rows">
         {[
+          ["/mind", "心の記録", "感謝・誓い・気づきを振り返る", Heart],
+          [
+            "/roadmap",
+            "心の成長ロードマップ",
+            "4つの節目と、これからの宣言",
+            Sprout,
+          ],
+          ["/missions", "ミッション", "参加と達成・デモポイント", Flag],
           [
             "/addresses",
             "自分の神社・住所のテスト例",
@@ -143,7 +154,7 @@ export function ProfilePage() {
           <div className="confirm-panel">
             <h3>保存した写真もすべて消えます</h3>
             <p>
-              御朱印・メモ・住所のテスト例・お気に入り・ポイント履歴・運営変更・投稿を削除し、初期状態（300徳）に戻します。元に戻せません。
+              御朱印・心の記録・これからの宣言・メモ・住所のテスト例・お気に入り・ポイント履歴・運営変更・投稿を削除し、初期状態（300徳）に戻します。元に戻せません。
             </p>
             <label className="check-label">
               <input

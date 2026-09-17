@@ -65,6 +65,27 @@ export type PhotoRecord = {
   createdAt: string;
 };
 export type Media = { original: Blob; thumbnail: Blob };
+export type PledgeStatus = "育てている" | "一歩進んだ" | "実践できた";
+export type MindEntry = {
+  id: string;
+  shrineId: string;
+  date: string;
+  gratitude: number;
+  gratitudeText: string;
+  pledge: string;
+  nextStep: string;
+  insight: string;
+  pledgeStatus: PledgeStatus;
+  reflection: string;
+  createdAt: string;
+  updatedAt: string;
+};
+export type Manifesto = {
+  values: string;
+  contribution: string;
+  declaration: string;
+  updatedAt: string;
+};
 export type LedgerEntry = {
   id: string;
   amount: number;
@@ -104,6 +125,8 @@ export type State = {
   notes: Record<string, string>;
   addresses: { current: string; birth: string };
   photos: PhotoRecord[];
+  mindEntries: MindEntry[];
+  manifesto: Manifesto;
   missions: Mission[];
   joined: Record<string, string>;
   ledger: LedgerEntry[];

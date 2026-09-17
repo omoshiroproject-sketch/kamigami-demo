@@ -8,6 +8,8 @@ Wikimedia Commonsの各ファイルのメタデータで作者・ライセンス
 
 | 保存先 | 撮影者 | 撮影日 | ライセンス | 原ファイル |
 | --- | --- | --- | --- | --- |
+| public/places/ise-jingu.jpg | Zairon | 2023-10-15 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | [Ise Ise-jingu Ujibashi Bridge 1.jpg](https://commons.wikimedia.org/wiki/File:Ise_Ise-jingu_Ujibashi_Bridge_1.jpg) |
+| public/places/ise-geku.jpg | Sakaori | 2015-05-24 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | [Ise-jingu Grand Shrine Geku Maine sanctuary. May, 2015.jpg](https://commons.wikimedia.org/wiki/File:Ise-jingu_Grand_Shrine_Geku_Maine_sanctuary._May,_2015.jpg) |
 | public/places/okayama.jpg | Reggaeman | 2008-02-11 | Public domain（作者による提供） | [Okayama Jinja 01.jpg](https://commons.wikimedia.org/wiki/File:Okayama_Jinja_01.jpg) |
 | public/places/ryozenji.jpg | 663highland | 2014-07-12 | [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/) | [140712 Ryozenji Naruto Tokushima pref Japan04s3.jpg](https://commons.wikimedia.org/wiki/File:140712_Ryozenji_Naruto_Tokushima_pref_Japan04s3.jpg) |
 | public/places/gokurakuji.jpg | Reggaeman | 2009-04-18 | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | [Nisshozan Gokurakuji 03.JPG](https://commons.wikimedia.org/wiki/File:Nisshozan_Gokurakuji_03.JPG) |
@@ -22,7 +24,8 @@ Wikimedia Commonsの各ファイルのメタデータで作者・ライセンス
 
 ## 歴史・祭神・ご利益
 
-- 伊勢神社：[岡山県神社庁](https://www.okayama-jinjacho.or.jp/search/16412/)。ご利益は寺社独自の一覧が空欄のため、[伊勢神宮の豊受大御神の紹介](https://www.isejingu.or.jp/first/beginner.html)に基づく祭神信仰として区別。
+- 岡山の伊勢神社：[岡山県神社庁](https://www.okayama-jinjacho.or.jp/search/16412/)。御神徳欄が空欄のため固有のご利益は記載せず、氏神としての由緒を紹介。他社のご利益を転用しません。
+- 伊勢神宮：[内宮](https://www.isejingu.or.jp/about/naiku/shogu.html)、[外宮](https://www.isejingu.or.jp/about/geku/shogu.html)、[歴史](https://www.isejingu.or.jp/about/history/)、[宇治橋](https://www.isejingu.or.jp/about/naiku/ujibashi.html)、[ご祈祷](https://www.isejingu.or.jp/visit/prayer/)、[所在地](https://www.isejingu.or.jp/access/)。内宮と外宮のご祭神を区別し、鎮座年代は伝承として記載。地図ピンは各神域付近の概略地点で、経路案内には正式名称と住所を渡します。内宮の写真は正宮ではなく宇治橋です。
 - 岡山神社：[公式の由緒・祭神](https://www.okayama-jinjya.or.jp/about.html)、[公式の祈祷案内](https://www.okayama-jinjya.or.jp/kitou.html)。祭神表記は県神社庁の既存マスターも保持し、読み方と説明を公式サイトで補充。
 - 霊山寺：[四国八十八ヶ所霊場会](https://88shikokuhenro.jp/01ryozenji/)。本尊と境内の縁結び観音を区別。
 - 極楽寺：[四国八十八ヶ所霊場会](https://88shikokuhenro.jp/02gokurakuji/)。安産大師や長命杉の信仰として紹介。

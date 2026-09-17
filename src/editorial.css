@@ -1,0 +1,1111 @@
+/* Shared travel-journal theme. Functional form/layout styles live in styles.css. */
+:root {
+  --ink: #242925;
+  --paper: #fbfaf7;
+  --vermilion: #b74431;
+  --green: #343d35;
+  --cream: #fbfaf7;
+  --line: #ddd9d0;
+  --red: #b74431;
+  --gold: #a37b47;
+  color: var(--ink);
+  background: var(--paper);
+}
+.site-header {
+  max-width: none;
+  height: 86px;
+  padding: 0 max(28px, calc((100vw - 1144px) / 2));
+  background: var(--ink);
+  color: #fffaf0;
+  border: 0;
+}
+.brand {
+  font-size: 25px;
+  letter-spacing: 0.18em;
+}
+.brand img {
+  width: 43px;
+  height: 43px;
+}
+.brand small {
+  color: #c9c6ba;
+  font-size: 8px;
+}
+.demo-pill {
+  color: #e5d2b5;
+  border-color: #82785f;
+  border-radius: 0;
+}
+.point-link svg {
+  color: #e2b775;
+}
+.container {
+  max-width: 1200px;
+  padding-top: 32px;
+}
+.primary {
+  background: var(--vermilion);
+  border-color: var(--vermilion);
+}
+.primary:hover {
+  background: #923422;
+  border-color: #923422;
+}
+button,
+.button {
+  border-radius: 3px;
+}
+.eyebrow {
+  color: #79664b;
+}
+.edition-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #6b6b60;
+}
+.edition-line span:first-child {
+  color: var(--vermilion);
+  font-weight: 700;
+}
+.travel-cover {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  min-height: 500px;
+  background: #f0ede5;
+}
+.cover-photo {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  background: #38453a;
+}
+.cover-photo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.cover-photo::after {
+  content: "";
+  position: absolute;
+  inset: 55% 0 0;
+  background: linear-gradient(transparent, #151f1bc9);
+  pointer-events: none;
+}
+.cover-label {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  padding: 13px 7px;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.22em;
+  background: #b74431;
+  color: white;
+  font-size: 11px;
+}
+.cover-place {
+  position: absolute;
+  bottom: 34px;
+  left: 30px;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  color: white;
+  font-size: 25px;
+  letter-spacing: 0.13em;
+  z-index: 1;
+}
+.cover-place span {
+  display: block;
+  font: 9px/2 sans-serif;
+  letter-spacing: 0.28em;
+}
+.cover-credit {
+  position: absolute;
+  bottom: 7px;
+  left: 14px;
+  color: #fff;
+  font-size: 8px;
+  z-index: 1;
+}
+.cover-copy {
+  padding: 38px 38px 40px 44px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.cover-index {
+  font:
+    10px/1.4 Georgia,
+    serif;
+  letter-spacing: 0.2em;
+  color: #776c58;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.cover-index b {
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--vermilion);
+  letter-spacing: -0.07em;
+}
+.cover-copy h1 {
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.75;
+  letter-spacing: 0.08em;
+  margin: 20px 0 15px;
+}
+.cover-copy > p {
+  font-size: 12px;
+  line-height: 2.3;
+  color: #666b5f;
+  margin-bottom: 25px;
+}
+.cover-destination {
+  border-top: 1px solid #ccc7b9;
+  padding-top: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.cover-destination > span {
+  font:
+    21px/1.5 "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  margin-right: 15px;
+}
+.cover-destination small {
+  display: block;
+  color: #6a6d62;
+  font-size: 10px;
+  margin-top: 5px;
+}
+.cover-copy .button {
+  min-height: 49px;
+  min-width: 195px;
+  justify-content: space-between;
+}
+.cover-stamp {
+  position: absolute;
+  right: 29px;
+  bottom: 41px;
+  writing-mode: vertical-rl;
+  padding: 9px 3px;
+  border: 1px solid #b7443155;
+  color: #9c3d2c;
+  font: 13px/1.4 serif;
+  letter-spacing: 0.25em;
+  transform: rotate(5deg);
+}
+.journey-tools {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+  padding: 25px 0;
+  margin-bottom: 26px;
+}
+.journey-tools > a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 7px 22px;
+}
+.journey-tools > a + a {
+  border-left: 1px solid var(--line);
+}
+.journey-tools > a > svg {
+  color: var(--vermilion);
+  width: 23px;
+}
+.journey-tools > a > svg:last-child {
+  margin-left: auto;
+  color: #7d7c70;
+  width: 16px;
+}
+.journey-tools b {
+  font-size: 14px;
+  font-weight: 500;
+}
+.journey-tools small {
+  display: block;
+  font-size: 10px;
+  color: #76786d;
+  margin-top: 5px;
+}
+.tool-number {
+  font:
+    10px Georgia,
+    serif;
+  color: #827965;
+  position: absolute;
+  top: -10px;
+  left: 23px;
+}
+.travel-overview {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.travel-record,
+.travel-connection {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 23px;
+}
+.travel-record {
+  border: 1px solid #dcd6c7;
+  background: #fffefb;
+}
+.record-emblem {
+  background: #f0ebe0;
+  width: 53px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cabc9d;
+  color: #9b5338;
+  box-shadow: 3px 3px 0 #ece7db;
+}
+.travel-record .eyebrow {
+  font-size: 10px;
+  margin: 0;
+}
+.travel-record b {
+  display: block;
+  font:
+    35px/1.5 Georgia,
+    serif;
+}
+.travel-record b small {
+  font: 11px sans-serif;
+  color: #7a7b70;
+}
+.record-description {
+  margin-left: auto;
+  font-size: 11px;
+  color: #67695f;
+}
+.record-description small {
+  display: block;
+  font-size: 9px;
+  margin-top: 5px;
+}
+.travel-connection {
+  color: #f4ecdb;
+  background: #343c34;
+}
+.travel-connection .eyebrow {
+  color: #cdbb96;
+  margin: 0 0 5px;
+  font-size: 10px;
+}
+.travel-connection b {
+  font:
+    18px/1.8 "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+}
+.travel-connection small {
+  display: block;
+  font-size: 10px;
+  color: #c4cbbd;
+}
+.travel-connection > svg:last-child {
+  margin-left: auto;
+}
+.section {
+  margin-top: 38px;
+}
+.section-heading {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 15px;
+  margin-bottom: 24px;
+}
+.section-heading h2 {
+  font-size: 24px;
+}
+.section-heading h2::before {
+  height: 22px;
+  width: 4px;
+  margin-right: 13px;
+}
+.section-heading > a {
+  color: #a04430;
+}
+.cards-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+.shrine-card {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  border-bottom: 1px solid #d1cbbd;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
+}
+.shrine-card:hover {
+  border-color: var(--vermilion);
+  background: #f2efe8;
+}
+.shrine-art,
+.shrine-art.temple {
+  width: 100%;
+  height: 190px;
+  flex-shrink: 0;
+  flex-basis: auto;
+  border-radius: 0;
+  background: #e8e4db;
+  overflow: hidden;
+}
+.shrine-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.shrine-card-body {
+  width: 100%;
+  padding: 18px 0 20px;
+}
+.shrine-card h3 {
+  font-size: 23px;
+  margin: 5px 0 7px;
+  letter-spacing: 0.035em;
+}
+.mini-label {
+  font-size: 10px;
+  color: #a14431;
+  letter-spacing: 0.13em;
+}
+.card-story {
+  color: #777365;
+  font-size: 11px;
+  min-height: 19px;
+}
+.shrine-card p {
+  font-size: 10px;
+  color: #606b60;
+}
+.shrine-card .tag {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: #7b7b70;
+  font-size: 10px;
+}
+.shrine-card .tag.filled {
+  color: #8d412f;
+}
+.card-arrow {
+  right: 2px;
+  top: auto;
+  bottom: 23px;
+  color: #ae624b;
+}
+.card-photo-credit {
+  font-size: 7px;
+  padding: 4px 7px;
+  background: #242925c4;
+}
+.shrine-art > .card-photo-credit {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  background: #242925c4;
+  font-size: 7px;
+  border-radius: 0;
+}
+.page-title {
+  padding: 14px 0 24px;
+  border-bottom: 1px solid #bbb6a7;
+  margin-bottom: 28px;
+}
+.page-title h1 {
+  font-size: 38px;
+}
+.page-title .eyebrow {
+  color: var(--vermilion);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.page-title p {
+  font-size: 13px;
+  color: #6d7267;
+}
+.search-panel {
+  background: #eeeae0;
+  border: 0;
+  border-radius: 0;
+  padding: 26px;
+}
+.search-input input {
+  background: #fffefa;
+}
+.segmented button.selected {
+  background: var(--ink);
+}
+.bottom-nav {
+  margin-inline: auto;
+  bottom: 16px;
+  border: 1px solid #555c50;
+  border-radius: 12px;
+  background: #242925f5;
+  color: #bfc2b8;
+  width: min(600px, calc(100% - 28px));
+  box-shadow: 0 10px 40px #18221e26;
+  padding: 3px 8px;
+}
+.bottom-nav a {
+  min-height: 66px;
+  padding: 10px 4px;
+  color: #c6cabf;
+}
+.bottom-nav a.active {
+  color: #f2c58b;
+  background: #ffffff09;
+  border-radius: 8px;
+}
+.bottom-nav a.active::before {
+  display: none;
+}
+.bottom-nav a.active svg {
+  color: #f2c58b;
+}
+.place-hero {
+  display: flex;
+  align-items: stretch;
+  min-height: 450px;
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: #292f2b;
+  color: #fff8e9;
+}
+.place-hero > img {
+  left: 40%;
+  width: 60%;
+  height: 100%;
+  object-position: center;
+  z-index: 0;
+}
+.place-hero-shade {
+  display: none;
+}
+.place-hero-copy {
+  position: relative;
+  inset: auto;
+  width: 40%;
+  padding: 62px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.place-hero-copy .eyebrow {
+  font-size: 10px;
+  color: #d8bd8f;
+  letter-spacing: 0.09em;
+}
+.place-hero h1 {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+  margin: 20px 0 4px;
+}
+.place-reading {
+  color: #ccc9b9;
+  font-size: 10px;
+  line-height: 2;
+  margin-bottom: 25px;
+  letter-spacing: 0.14em;
+}
+.place-subtitle {
+  font-size: 15px;
+  line-height: 2;
+  color: #ece3d1;
+  border-top: 1px solid #697064;
+  padding-top: 21px;
+}
+.place-locale {
+  font-size: 11px;
+  color: #efd0a1;
+  margin: 0 0 10px;
+}
+.place-seal {
+  background: #b74431;
+  top: 25px;
+  right: 25px;
+  border-color: #ffe7b8;
+}
+.place-hero.illustrated {
+  background: #303b33;
+}
+.place-hero.illustrated > img {
+  left: 40%;
+  right: 0;
+  width: 60%;
+  opacity: 0.7;
+}
+.visual-label {
+  bottom: 13px;
+  z-index: 1;
+}
+.photo-credit {
+  font-size: 9px;
+  color: #727268;
+}
+.place-distinction,
+.jingu-guide {
+  padding: 24px 28px;
+  background: #f0eade;
+  border-left: 4px solid var(--vermilion);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 24px 0;
+}
+.place-distinction strong,
+.jingu-guide strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+.place-distinction p,
+.jingu-guide p {
+  font-size: 12px;
+  color: #676b5f;
+  margin: 5px 0 0;
+  line-height: 1.9;
+}
+.place-distinction a,
+.jingu-guide > a {
+  font-size: 12px;
+  color: #a03d2a;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #bb8873;
+  padding: 9px 0;
+}
+.jingu-guide > a {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.jingu-guide .eyebrow {
+  font-size: 10px;
+}
+.place-tabs {
+  background: #fffefb;
+  border-color: #d0c9bb;
+  margin: 26px 0;
+}
+.place-tabs a {
+  padding: 18px;
+  font-size: 12px;
+}
+.place-tabs a:hover {
+  background: #f5e8dd;
+  color: var(--vermilion);
+}
+.place-lead {
+  max-width: 850px;
+  font-size: 25px;
+  padding: 8px 0;
+}
+.place-facts {
+  background: #f0ede5;
+  border: 0;
+}
+.place-facts > div {
+  padding: 24px 28px;
+}
+.place-facts span {
+  color: #9e5037;
+  font-size: 10px;
+}
+.story-heading > span {
+  color: #b04731;
+}
+.story-heading h2 {
+  font-size: 28px;
+}
+.story-section {
+  gap: 65px;
+  padding: 26px 0 45px;
+}
+.story-body > p {
+  color: #515b50;
+}
+.history-line {
+  border-left-color: #ac6647;
+  padding-left: 23px;
+}
+.history-line li::before {
+  left: -29px;
+  background: #b34b32;
+  border-color: var(--paper);
+}
+.history-line strong {
+  color: #a04430;
+}
+.blessing-panel {
+  background: #343c34;
+  border: 0;
+  border-radius: 0;
+  padding: 38px;
+  color: #f9f2e3;
+}
+.blessing-panel .story-heading > span,
+.blessing-panel .story-heading > p {
+  color: #e4c594;
+}
+.blessing-panel .story-heading h2 {
+  color: #fff4df;
+}
+.blessing-tags > span {
+  border: 1px solid #878777;
+  color: #fff1d5;
+  border-radius: 0;
+  background: #ffffff05;
+}
+.blessing-tags svg {
+  color: #e8bb80;
+}
+.blessing-panel small {
+  color: #c5c7b6;
+}
+.highlight-grid article {
+  background: #f0ede5;
+  border-radius: 0;
+  border-top-color: #a64e34;
+  padding: 25px;
+}
+.highlight-number {
+  color: #b34b32;
+}
+.god-symbol {
+  background: #eee5d4;
+  color: #a04f34;
+}
+.god-links > a {
+  background: #fffef9;
+  border-radius: 0;
+}
+.story-sources {
+  background: #eeebe3;
+  border-radius: 0;
+}
+.first-page {
+  background: #f0ede5;
+  padding: 20px;
+  border: 0;
+}
+.mission-banner {
+  border-radius: 0;
+  background: #e9e5da;
+}
+.page-footer {
+  color: #6d7063;
+}
+@media (max-width: 1000px) {
+  .cover-copy {
+    padding: 30px;
+  }
+  .cover-copy h1 {
+    font-size: 35px;
+  }
+  .cover-stamp {
+    display: none;
+  }
+  .journey-tools > a {
+    gap: 10px;
+    padding: 7px 15px;
+  }
+  .journey-tools small {
+    font-size: 9px;
+  }
+  .record-description {
+    display: none;
+  }
+  .travel-record > svg:last-child {
+    margin-left: auto;
+  }
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .shrine-art {
+    height: 215px;
+  }
+  .place-hero h1 {
+    font-size: 32px;
+  }
+  .place-hero-copy {
+    padding: 42px 26px;
+  }
+  .jingu-guide {
+    display: block;
+  }
+  .jingu-guide > a {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .site-header {
+    height: 77px;
+    padding: 0 20px;
+  }
+  .brand {
+    font-size: 21px;
+    gap: 10px;
+    letter-spacing: 0.1em;
+  }
+  .brand img {
+    width: 35px;
+    height: 35px;
+  }
+  .brand small {
+    font-size: 6px;
+  }
+  .header-right {
+    gap: 9px;
+  }
+  .demo-pill {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  .point-link {
+    gap: 3px;
+    font-size: 10px;
+  }
+  .point-link strong {
+    font-size: 15px;
+  }
+  .point-link svg {
+    display: none;
+  }
+  .container {
+    padding: 22px 20px 125px;
+  }
+  .edition-line {
+    font-size: 9px;
+    letter-spacing: 0.11em;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .travel-cover {
+    grid-template-columns: 1fr;
+  }
+  .cover-photo {
+    min-height: 300px;
+  }
+  .cover-photo > img {
+    object-position: center 57%;
+  }
+  .cover-label {
+    top: 17px;
+    left: 17px;
+    padding: 10px 5px;
+    font-size: 10px;
+  }
+  .cover-place {
+    font-size: 21px;
+    left: 21px;
+    bottom: 25px;
+  }
+  .cover-credit {
+    font-size: 7px;
+    left: 8px;
+    bottom: 5px;
+  }
+  .cover-copy {
+    padding: 24px;
+  }
+  .cover-index {
+    font-size: 8px;
+    gap: 10px;
+  }
+  .cover-index b {
+    font-size: 27px;
+  }
+  .cover-copy h1 {
+    font-size: 35px;
+    line-height: 1.7;
+    margin: 13px 0 12px;
+  }
+  .cover-copy > p {
+    font-size: 11px;
+    line-height: 2.1;
+    margin-bottom: 20px;
+  }
+  .cover-destination {
+    padding-top: 17px;
+    margin-bottom: 17px;
+  }
+  .cover-destination > span {
+    font-size: 19px;
+  }
+  .cover-copy .button {
+    min-width: 0;
+    width: 100%;
+    font-size: 12px;
+  }
+  .journey-tools {
+    padding: 24px 0 20px;
+    margin: 0 0 22px;
+  }
+  .journey-tools > a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 3px 0;
+    text-align: center;
+  }
+  .journey-tools b {
+    font-size: 11px;
+  }
+  .journey-tools small,
+  .journey-tools > a > svg:last-child {
+    display: none;
+  }
+  .tool-number {
+    position: static;
+    font-size: 9px;
+  }
+  .travel-overview {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .travel-record,
+  .travel-connection {
+    padding: 17px 19px;
+    gap: 16px;
+  }
+  .record-emblem {
+    width: 40px;
+    height: 51px;
+  }
+  .travel-record b {
+    font-size: 30px;
+  }
+  .travel-connection b {
+    font-size: 16px;
+  }
+  .travel-connection .eyebrow {
+    font-size: 9px;
+  }
+  .section-heading {
+    margin-bottom: 19px;
+    padding-bottom: 12px;
+  }
+  .section-heading h2 {
+    font-size: 21px;
+  }
+  .section-heading > a {
+    font-size: 10px;
+  }
+  .cards-grid {
+    gap: 22px 16px;
+  }
+  .shrine-art,
+  .shrine-art.temple {
+    height: 150px;
+    width: 100%;
+  }
+  .shrine-card-body {
+    padding: 13px 0 18px;
+  }
+  .shrine-card h3 {
+    font-size: 19px;
+    letter-spacing: 0;
+  }
+  .mini-label {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+  }
+  .card-story {
+    font-size: 10px;
+    min-height: 34px;
+  }
+  .shrine-card p {
+    font-size: 9px;
+    gap: 2px;
+    margin-bottom: 9px;
+  }
+  .shrine-card p svg {
+    width: 11px;
+  }
+  .shrine-card .tag {
+    font-size: 8px;
+  }
+  .card-arrow {
+    width: 13px;
+    right: 0;
+    bottom: 20px;
+  }
+  .page-title {
+    padding: 7px 0 18px;
+    margin-bottom: 22px;
+  }
+  .page-title h1 {
+    font-size: 31px;
+  }
+  .page-title p {
+    font-size: 12px;
+  }
+  .search-panel {
+    padding: 19px 15px;
+  }
+  .search-panel label {
+    font-size: 11px;
+  }
+  .bottom-nav {
+    bottom: max(9px, env(safe-area-inset-bottom));
+    width: calc(100% - 20px);
+    padding: 1px 4px;
+    border-radius: 10px;
+  }
+  .bottom-nav a {
+    padding: 9px 2px;
+    min-height: 61px;
+    font-size: 9px;
+  }
+  .bottom-nav a svg {
+    width: 20px;
+    height: 20px;
+  }
+  .place-hero {
+    display: block;
+    padding-top: 280px;
+    min-height: 0;
+  }
+  .place-hero > img {
+    width: 100%;
+    height: 280px;
+    left: 0;
+  }
+  .place-hero-copy {
+    padding: 26px;
+    width: 100%;
+  }
+  .place-hero h1 {
+    font-size: 34px;
+    margin: 11px 0 3px;
+    line-height: 1.6;
+  }
+  .place-hero-copy .eyebrow {
+    font-size: 9px;
+  }
+  .place-reading {
+    font-size: 9px;
+    margin-bottom: 18px;
+  }
+  .place-subtitle {
+    font-size: 14px;
+    padding-top: 16px;
+  }
+  .place-hero.illustrated > img {
+    left: 0;
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+  }
+  .place-seal {
+    top: 22px;
+    right: 22px;
+  }
+  .visual-label {
+    top: 253px;
+    bottom: auto;
+    font-size: 9px;
+  }
+  .photo-credit {
+    font-size: 8px;
+  }
+  .place-distinction,
+  .jingu-guide {
+    padding: 20px;
+    gap: 10px;
+  }
+  .place-distinction {
+    align-items: flex-start;
+  }
+  .place-distinction strong,
+  .jingu-guide strong {
+    font-size: 14px;
+  }
+  .place-distinction p,
+  .jingu-guide p {
+    font-size: 11px;
+  }
+  .place-distinction a,
+  .jingu-guide > a {
+    font-size: 11px;
+  }
+  .place-tabs a {
+    padding: 14px 15px;
+    font-size: 11px;
+  }
+  .place-lead {
+    font-size: 20px;
+  }
+  .place-facts > div {
+    padding: 18px 15px;
+  }
+  .place-facts strong {
+    font-size: 12px;
+  }
+  .story-section {
+    gap: 20px;
+    padding: 12px 0 35px;
+  }
+  .story-heading h2 {
+    font-size: 24px;
+  }
+  .blessing-panel {
+    padding: 27px 23px;
+    gap: 18px;
+  }
+  .blessing-tags > span {
+    font-size: 11px;
+  }
+  .two-column {
+    gap: 0;
+  }
+  .first-page {
+    padding: 15px;
+  }
+}
+@media (max-width: 374px) {
+  .container {
+    padding-inline: 15px;
+  }
+  .site-header {
+    padding-inline: 15px;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .cover-copy h1 {
+    font-size: 30px;
+  }
+  .place-hero h1 {
+    font-size: 30px;
+  }
+}

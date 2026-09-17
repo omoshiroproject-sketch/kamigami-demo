@@ -29,7 +29,7 @@ test("検索→祭神→写真→図鑑→ミッション→交換と再読込",
     .first()
     .click();
   await page.getByRole("link", { name: "探す", exact: true }).click();
-  await page.getByLabel("寺社名・読み方・地域で検索").fill("イセ");
+  await page.getByLabel("寺社名・読み方・地域で検索").fill("イセジンジャ");
   await expect(page.locator(".shrine-card")).toHaveCount(1);
   await page.locator(".shrine-card").click();
   await expect(
@@ -41,7 +41,7 @@ test("検索→祭神→写真→図鑑→ミッション→交換と再読込",
   await page
     .getByRole("button", { name: "デモ参拝を記録", exact: true })
     .click();
-  await page.getByRole("link", { name: /天照皇大神 あまてらす/ }).click();
+  await page.getByRole("link", { name: /天照大御神 あまてらす/ }).click();
   await page.getByRole("button", { name: "学習を記録", exact: true }).click();
   await page
     .getByLabel("気づいたこと、覚えておきたいこと")
@@ -52,7 +52,7 @@ test("検索→祭神→写真→図鑑→ミッション→交換と再読込",
   await expect(page.getByLabel("気づいたこと、覚えておきたいこと")).toHaveValue(
     "食の神様とのつながりを知った。",
   );
-  await page.getByRole("link", { name: "豊受大神", exact: true }).click();
+  await page.getByRole("link", { name: "豊受大御神", exact: true }).click();
   await expect(page.getByLabel("気づいたこと、覚えておきたいこと")).toHaveValue(
     "",
   );
@@ -308,7 +308,7 @@ test("位置拒否・地図通信失敗・ピンから詳細・検索条件と�
   );
   await page.getByRole("button", { name: "地図", exact: true }).click();
   await expect(page.getByText(/地図画像を読み込めません/)).toBeVisible();
-  await expect(page.locator(".shrine-card")).toHaveCount(24);
+  await expect(page.locator(".shrine-card")).toHaveCount(26);
   await page.locator('.leaflet-marker-icon[title="伊勢神社"]').press("Enter");
   await page.getByRole("button", { name: "詳細を見る", exact: true }).click();
   await expect(
@@ -430,7 +430,14 @@ for (const width of [375, 390, 768, 1440])
   });
 
 test("寺社の写真・歴史・ご利益・出典と写真失敗時の代替", async ({ page }) => {
-  for (const id of ["ise", "okayama", "ryozenji", "gokurakuji"]) {
+  for (const id of [
+    "ise-jingu",
+    "ise-geku",
+    "ise",
+    "okayama",
+    "ryozenji",
+    "gokurakuji",
+  ]) {
     await open(page, `/shrines/${id}`);
     await expect(page.locator(".history-line li")).not.toHaveCount(0);
     await expect(page.locator(".story-sources a")).not.toHaveCount(0);
@@ -479,4 +486,47 @@ test("寺社の写真・歴史・ご利益・出典と写真失敗時の代替",
   await open(page, "/shrines/sample-1");
   await expect(page.locator(".visual-label")).toContainText("架空サンプル");
   await expect(page.locator(".history-line")).toHaveCount(0);
+});
+
+test("伊勢神宮の内宮・外宮と岡山の伊勢神社を混同しない", async ({ page }) => {
+  await open(page, "/search?q=イセ");
+  await expect(page.locator(".shrine-card")).toHaveCount(3);
+  await page.locator('.shrine-card[href="/shrines/ise"]').click();
+  await expect(page.locator(".place-distinction")).toContainText("岡山県");
+  await page
+    .getByRole("button", { name: "お気に入りに追加", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "デモ参拝を記録", exact: true })
+    .click();
+  await page.getByRole("link", { name: "三重県・伊勢神宮 内宮を見る" }).click();
+  await expect(page.locator("h1")).toHaveText("伊勢神宮 内宮");
+  await expect(page.locator(".source a")).toHaveText("出典：伊勢神宮公式");
+  await expect(page.locator(".place-facts")).toContainText("天照大御神");
+  await expect(page.locator(".god-links a")).toHaveCount(1);
+  await expect(page.locator(".god-links a")).toContainText("天照大御神");
+  await expect(
+    page.getByRole("button", { name: "お気に入りに追加", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "デモ参拝を記録", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Googleマップで経路案内/ }),
+  ).toHaveAttribute("href", /%E4%B8%89%E9%87%8D/);
+  await page.getByRole("link", { name: "外宮・豊受大神宮へ" }).click();
+  await expect(page.locator("h1")).toHaveText("伊勢神宮 外宮");
+  await expect(page.locator(".god-links a")).toHaveCount(1);
+  await expect(page.locator(".god-links a")).toContainText("豊受大御神");
+  await page.getByRole("link", { name: "御朱印を追加", exact: true }).click();
+  await expect(page.getByLabel("保存先の寺社", { exact: true })).toHaveValue(
+    "ise-geku",
+  );
+  await open(page, "/shrines/ise");
+  await expect(
+    page.getByRole("button", { name: "お気に入り登録済み", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "デモ参拝を再記録", exact: true }),
+  ).toBeVisible();
 });

@@ -22,11 +22,143 @@ export type PlaceStory = {
   photo?: PlacePhoto;
 };
 export const stories: Record<string, PlaceStory> = {
+  "ise-jingu": {
+    subtitle: "五十鈴川を渡り、祈りの原風景へ。",
+    era: "約2,000年前に鎮座と伝わる",
+    identity: "天照大御神 ／ 皇大神宮（内宮）",
+    lead: "三重県伊勢市、五十鈴川のほとりに鎮まる皇大神宮。天照大御神をお祀りする、伊勢神宮の中心となるお宮です。",
+    history: [
+      "伊勢神宮の正式名称は「神宮」。内宮と外宮、別宮など125の宮社の総称です。このページでは、内宮と呼ばれる皇大神宮を紹介します。岡山市の「伊勢神社」とは別の神社です。",
+      "公式の由緒では、倭姫命が天照大御神をお祀りする地を求めて各地を巡り、約2,000年前に伊勢へ鎮座したと伝えられます。天照大御神は皇室の御祖神として崇敬され、八咫鏡をご神体としています。",
+      "平安時代末期から伊勢への信仰が広まり、江戸時代には多くの人がお伊勢参りに訪れました。20年ごとの式年遷宮では、社殿を新しく造り替え、祭りや技を次代へ伝えています。",
+    ],
+    timeline: [
+      {
+        year: "約2,000年前（伝承）",
+        text: "倭姫命により、天照大御神が伊勢に鎮座",
+      },
+      { year: "平安時代末期〜", text: "伊勢信仰が全国へと広がる" },
+      { year: "江戸時代", text: "庶民の間でお伊勢参りが盛んになる" },
+      { year: "20年ごと", text: "式年遷宮で社殿と祭りの伝統を受け継ぐ" },
+    ],
+    blessings: ["神恩感謝", "家内安全", "身体健全", "五穀豊穣"],
+    belief:
+      "神宮では、日々の恵みへの感謝を大切にしています。神楽殿の公式祈祷案内には、国家安泰・五穀豊穣に加え、家内安全・身体健全・学業成就などの願いが記されています。内宮のご祭神は天照大御神で、豊受大御神は外宮にお祀りされています。",
+    highlights: [
+      {
+        title: "宇治橋と五十鈴川",
+        text: "内宮への入口となる木の橋。川の流れと森を感じながら、神域へ向かいます。掲載写真はこの宇治橋の鳥居です。",
+      },
+      {
+        title: "皇大神宮の正宮",
+        text: "天照大御神をお祀りする中心のお宮。長い参道の先にあり、宇治橋とは異なる場所です。",
+      },
+    ],
+    sources: [
+      {
+        title: "伊勢神宮｜神宮について・125の宮社",
+        url: "https://www.isejingu.or.jp/about/",
+      },
+      {
+        title: "伊勢神宮｜皇大神宮（内宮）・正宮",
+        url: "https://www.isejingu.or.jp/about/naiku/shogu.html",
+      },
+      {
+        title: "伊勢神宮｜神宮の歴史",
+        url: "https://www.isejingu.or.jp/about/history/",
+      },
+      {
+        title: "伊勢神宮｜宇治橋・五十鈴川",
+        url: "https://www.isejingu.or.jp/about/naiku/ujibashi.html",
+      },
+      {
+        title: "伊勢神宮｜ご祈祷のご案内",
+        url: "https://www.isejingu.or.jp/visit/prayer/",
+      },
+      {
+        title: "伊勢神宮｜交通アクセス",
+        url: "https://www.isejingu.or.jp/access/",
+      },
+    ],
+    photo: {
+      src: "/places/ise-jingu.jpg",
+      alt: "伊勢神宮・内宮の宇治橋と鳥居（三重県伊勢市・2023年撮影）",
+      author: "Zairon",
+      license: "CC BY 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+      source:
+        "https://commons.wikimedia.org/wiki/File:Ise_Ise-jingu_Ujibashi_Bridge_1.jpg",
+      date: "2023-10-15",
+    },
+  },
+  "ise-geku": {
+    subtitle: "日々の食と暮らしに、感謝を重ねる。",
+    era: "478年に鎮座と伝わる",
+    identity: "豊受大御神 ／ 豊受大神宮（外宮）",
+    lead: "伊勢のまちに鎮まる、豊受大神宮。衣食住と産業を守る豊受大御神をお祀りし、日々の恵みに感謝するお宮です。",
+    history: [
+      "外宮の正式名称は「豊受大神宮」。内宮とともに伊勢神宮を構成するお宮で、天照大御神のお食事をつかさどる豊受大御神をお祀りしています。内宮とは所在地もご祭神も異なります。",
+      "公式の由緒では、雄略天皇22年（478年）に、丹波国から豊受大御神を迎えたと伝えられます。以来、朝夕に神々のお食事を供える日別朝夕大御饌祭が続いています。",
+    ],
+    timeline: [
+      { year: "478年（伝承）", text: "豊受大御神を丹波国から伊勢に迎える" },
+      { year: "約1,500年の営み", text: "朝夕に神饌を供えるお祭りを受け継ぐ" },
+      {
+        year: "外宮から内宮へ",
+        text: "祭典の順序にならい、参拝も外宮を先にするならわし",
+      },
+    ],
+    blessings: ["衣食住の守護", "産業の守護", "神恩感謝", "商売繁盛"],
+    belief:
+      "豊受大御神は、公式案内で衣食住や産業を守る神様と紹介されています。神楽殿では神恩感謝や商売繁盛などの祈祷を受け付けています。ご利益は信仰としての紹介で、願いの実現を保証するものではありません。",
+    highlights: [
+      {
+        title: "豊受大神宮の正宮",
+        text: "豊受大御神をお祀りするお宮。高倉山の麓に広がる神域を歩き、日々の暮らしへの感謝を伝えます。",
+      },
+      {
+        title: "せんぐう館",
+        text: "まがたま池のほとりにある博物館。式年遷宮の技と営みを紹介しています。開館情報は公式案内をご確認ください。",
+      },
+    ],
+    sources: [
+      {
+        title: "伊勢神宮｜豊受大神宮（外宮）・正宮",
+        url: "https://www.isejingu.or.jp/about/geku/shogu.html",
+      },
+      {
+        title: "伊勢神宮｜豊受大神宮（外宮）",
+        url: "https://www.isejingu.or.jp/about/geku/",
+      },
+      {
+        title: "伊勢神宮｜ご祭神と信仰",
+        url: "https://www.isejingu.or.jp/first/beginner.html",
+      },
+      {
+        title: "伊勢神宮｜ご祈祷のご案内",
+        url: "https://www.isejingu.or.jp/visit/prayer/",
+      },
+      {
+        title: "伊勢神宮｜交通アクセス",
+        url: "https://www.isejingu.or.jp/access/",
+      },
+    ],
+    photo: {
+      src: "/places/ise-geku.jpg",
+      alt: "伊勢神宮・外宮の正宮を外から望む（三重県伊勢市・2015年撮影）",
+      author: "Sakaori",
+      license: "CC BY 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
+      source:
+        "https://commons.wikimedia.org/wiki/File:Ise-jingu_Grand_Shrine_Geku_Maine_sanctuary._May,_2015.jpg",
+      date: "2015-05-24",
+    },
+  },
   ise: {
-    subtitle: "城下町に息づく、伊勢のご縁。",
+    subtitle: "岡山・番町に鎮まる、まちのお社。",
     era: "元伊勢の伝承",
     identity: "天照皇大神・豊受大神",
-    lead: "岡山のまちなかに、長く受け継がれてきた祈りの場所。二柱の神様と、城下町の歴史をたどります。",
+    lead: "岡山市北区番町の伊勢神社です。三重県伊勢市の「伊勢神宮」とは別の神社で、天照皇大神と豊受大神をお祀りしています。",
     history: [
       "社伝では、崇神天皇の時代に豊鋤入姫命が創建したとされる「元伊勢」の一社です。岡山県神社庁は、古くから備前岡山の氏神として人々の崇敬を集めたと紹介しています。",
       "宇喜多氏・池田氏の時代にも厚く敬われ、伊勢宮の神職は備前藩の祭事を担いました。氏子の町々から伝わる備前太鼓唄と獅子舞にも、城下町との結びつきが息づいています。",
@@ -36,9 +168,9 @@ export const stories: Record<string, PlaceStory> = {
       { year: "安土桃山〜江戸", text: "宇喜多氏・池田氏の崇敬を受ける" },
       { year: "受け継ぐ祭り", text: "氏子から発祥した備前太鼓唄・獅子舞" },
     ],
-    blessings: ["暮らしの恵み", "衣食住・産業"],
+    blessings: ["岡山の氏神信仰"],
     belief:
-      "豊受大神は、伊勢神宮の公式案内で衣食住や産業を守る神様と紹介されています。ここではご祭神への信仰として紹介しています。岡山の伊勢神社独自のご利益一覧は、参照資料に記載がありません。",
+      "岡山県神社庁は、古くから備前岡山の氏神として崇敬を集めてきたと紹介しています。参照資料の「御神徳」欄には具体的な記載がないため、この神社固有のご利益は掲載していません。",
     highlights: [
       {
         title: "二柱のご祭神",
@@ -53,10 +185,6 @@ export const stories: Record<string, PlaceStory> = {
       {
         title: "岡山県神社庁｜伊勢神社",
         url: "https://www.okayama-jinjacho.or.jp/search/16412/",
-      },
-      {
-        title: "伊勢神宮｜ご祭神の紹介",
-        url: "https://www.isejingu.or.jp/first/beginner.html",
       },
     ],
   },

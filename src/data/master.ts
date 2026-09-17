@@ -5,16 +5,16 @@ export const GOD_SOURCE = "https://www.isejingu.or.jp/about/";
 export const gods: God[] = [
   {
     id: "amaterasu",
-    name: "天照皇大神",
-    reading: "あまてらすおおみかみ（天照大御神）",
+    name: "天照大御神",
+    reading: "あまてらすおおみかみ",
     kind: "神様",
     description:
-      "天照大御神とも呼ばれ、伊勢の皇大神宮（内宮）にお祀りされています。岡山の伊勢神社にも御祭神として記載されています。",
+      "伊勢の皇大神宮（内宮）にお祀りされる神様。岡山の伊勢神社では天照皇大神という表記で御祭神に記載されています。",
     source: GOD_SOURCE,
   },
   {
     id: "toyouke",
-    name: "豊受大神",
+    name: "豊受大御神",
     reading: "とようけのおおかみ",
     kind: "神様",
     description:
@@ -94,6 +94,40 @@ export const gods: God[] = [
   },
 ];
 const real: Shrine[] = [
+  {
+    id: "ise-jingu",
+    name: "伊勢神宮 内宮",
+    reading: "いせじんぐう ないくう こうたいじんぐう",
+    region: "三重県",
+    city: "伊勢市",
+    address: "三重県伊勢市宇治館町1",
+    kind: "神社",
+    lat: 34.455,
+    lng: 136.7258,
+    gods: ["amaterasu"],
+    source: "https://www.isejingu.or.jp/about/naiku/",
+    checked: CHECKED,
+    fictional: false,
+    description:
+      "皇大神宮（内宮）は、天照大御神をお祀りするお宮。伊勢神宮は内宮・外宮をはじめとする125の宮社の総称です。",
+  },
+  {
+    id: "ise-geku",
+    name: "伊勢神宮 外宮",
+    reading: "いせじんぐう げくう とようけだいじんぐう",
+    region: "三重県",
+    city: "伊勢市",
+    address: "三重県伊勢市豊川町279",
+    kind: "神社",
+    lat: 34.4875,
+    lng: 136.7045,
+    gods: ["toyouke"],
+    source: "https://www.isejingu.or.jp/about/geku/",
+    checked: CHECKED,
+    fictional: false,
+    description:
+      "豊受大神宮（外宮）は、天照大御神の御饌都神である豊受大御神をお祀りするお宮。内宮とは別の場所に鎮座します。",
+  },
   {
     id: "ise",
     name: "伊勢神社",

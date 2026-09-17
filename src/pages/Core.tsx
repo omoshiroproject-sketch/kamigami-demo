@@ -41,93 +41,126 @@ export function HomePage() {
   const connected = addressMatcher.match(state.addresses.current);
   return (
     <>
-      <div className="home-greeting">
-        <div>
-          <span className="eyebrow">めぐる、知る、つながる。</span>
-          <h1>今日も、心に残るご縁を。</h1>
-        </div>
-        <div className="seal">縁</div>
+      <div className="edition-line">
+        <span>参拝の旅帖</span>
+        <span>めぐる、知る、つながる。</span>
       </div>
-      <div className="home-editorial">
-        <Link to="/shrines/ryozenji" className="journey-feature">
-          <PlaceVisual shrine={shrines[2]} eager />
-          <div className="journey-copy">
-            <span className="eyebrow">今、訪れたい場所 / 徳島</span>
-            <h2>
-              一歩から、
-              <br />
-              はじまるご縁。
-            </h2>
-            <p>四国第一番・霊山寺をめぐる</p>
-            <span className="journey-more">
-              この場所の物語へ <ArrowUpRight size={18} />
-            </span>
-          </div>
-          <span className="journey-number">01 — 04</span>
-          <span className="feature-credit">
-            Photo: 663highland · CC BY 2.5（出典は詳細へ）
+      <section className="travel-cover" aria-label="伊勢神宮の特集">
+        <Link
+          to="/shrines/ise-jingu"
+          className="cover-photo"
+          aria-label="伊勢神宮 内宮の物語を読む"
+        >
+          <PlaceVisual shrine={shrineById("ise-jingu")!} eager />
+          <span className="cover-label">今、訪れたい場所</span>
+          <span className="cover-place">
+            三重・伊勢<span>ISE JINGU</span>
+          </span>
+          <span className="cover-credit">
+            Photo: Zairon · CC BY 4.0（出典は詳細へ）
           </span>
         </Link>
-        <div className="home-overview">
-          <div className="collection-summary">
-            <span className="eyebrow light">わたしの参拝図鑑</span>
-            <div className="summary-numbers">
-              <strong>
-                {collected}
-                <small> / {shrines.length}</small>
-              </strong>
-              <span>
-                寺社の御朱印を登録
-                <br />
-                デモ収録分
-              </span>
-            </div>
-            <div className="progress-track">
-              <i style={{ width: `${(collected / shrines.length) * 100}%` }} />
-            </div>
-            <div className="summary-foot">
-              <span>
-                デモ参拝 <b>{Object.keys(state.visits).length}</b> 寺社
-              </span>
-              <Link to="/book">
-                一冊をひらく <ArrowUpRight size={16} />
-              </Link>
-            </div>
+        <div className="cover-copy">
+          <span className="cover-index">
+            FEATURE <b>01</b>
+          </span>
+          <h1>
+            心がほどける、
+            <br />
+            神社の旅へ。
+          </h1>
+          <p>
+            鳥居の向こうに、どんな物語があるだろう。
+            <br />
+            神様を知り、歩いた記憶を、一冊に。
+          </p>
+          <div className="cover-destination">
+            <span>伊勢神宮</span>
+            <small>五十鈴川のほとり、祈りをたどる</small>
           </div>
-          <Link className="connection-card" to="/addresses">
-            <span className="icon-circle">
-              <Flower2 size={25} />
-            </span>
-            <div>
-              <span className="eyebrow">暮らしと、神社のつながり</span>
-              <h2>
-                {connected?.ids[0]
-                  ? `${shrineById(connected.ids[0])?.name}とのご縁`
-                  : "自分の神社を知る"}
-              </h2>
-              <p>
-                現住所と生まれた地域から。
-                <br />
-                町域のテスト例で、ご縁をたどります。
-              </p>
-              <span className="text-link">
-                {connected ? "照合結果を見る" : "テスト例を選んでみる"}{" "}
-                <ChevronRight size={15} />
-              </span>
-            </div>
+          <Link to="/shrines/ise-jingu" className="button primary">
+            伊勢神宮を知る <ArrowUpRight size={18} />
           </Link>
+          <span className="cover-stamp" aria-hidden="true">
+            旅と祈り
+          </span>
         </div>
+      </section>
+      <div className="journey-tools">
+        <Link to="/search">
+          <span className="tool-number">01</span>
+          <Search />
+          <div>
+            <b>次の寺社を探す</b>
+            <small>地域や名前から、気になる場所へ</small>
+          </div>
+          <ArrowUpRight size={18} />
+        </Link>
+        <Link to="/photos/new">
+          <span className="tool-number">02</span>
+          <BookOpen />
+          <div>
+            <b>御朱印を残す</b>
+            <small>今日のご縁を、あなたの一冊に</small>
+          </div>
+          <ArrowUpRight size={18} />
+        </Link>
+        <Link to="/gods">
+          <span className="tool-number">03</span>
+          <Flower2 />
+          <div>
+            <b>神様を知る</b>
+            <small>名前から広がる、日本の物語</small>
+          </div>
+          <ArrowUpRight size={18} />
+        </Link>
+      </div>
+      <div className="travel-overview">
+        <Link to="/book" className="travel-record">
+          <span className="record-emblem">
+            <BookOpen size={26} />
+          </span>
+          <div>
+            <span className="eyebrow">わたしの参拝図鑑</span>
+            <b>
+              {collected}
+              <small> / {shrines.length} 寺社</small>
+            </b>
+          </div>
+          <div className="record-description">
+            <span>御朱印から、ご縁が増えていく。</span>
+            <small>
+              デモ収録分 · デモ参拝 {Object.keys(state.visits).length} 寺社
+            </small>
+          </div>
+          <ArrowUpRight size={21} />
+        </Link>
+        <Link className="travel-connection" to="/addresses">
+          <MapPin size={24} />
+          <div>
+            <span className="eyebrow">暮らしのそばにあるご縁</span>
+            <b>
+              {connected?.ids[0]
+                ? `${shrineById(connected.ids[0])?.name}とのご縁`
+                : "自分の神社を知る"}
+            </b>
+            <small>町域のテスト例から探す</small>
+          </div>
+          <ChevronRight size={18} />
+        </Link>
       </div>
       <Section title="次のご縁を探す" to="/search" link="寺社を探す">
         <div className="cards-grid">
-          {shrines.slice(0, 4).map((s) => (
-            <ShrineCard
-              key={s.id}
-              shrine={s}
-              visited={!!state.visits[s.id]}
-              favorite={state.favorites.includes(s.id)}
-            />
-          ))}
+          {["ise-jingu", "okayama", "ryozenji", "gokurakuji"]
+            .map((id) => shrineById(id)!)
+            .map((s) => (
+              <ShrineCard
+                key={s.id}
+                shrine={s}
+                visited={!!state.visits[s.id]}
+                favorite={state.favorites.includes(s.id)}
+              />
+            ))}
         </div>
       </Section>
       <div className="two-column">
@@ -259,7 +292,7 @@ export function SearchPage() {
   };
   return (
     <>
-      <PageTitle eyebrow="小さな旅の、はじまり。" title="寺社を探す">
+      <PageTitle eyebrow="EXPLORE / 参拝の旅を見つける" title="寺社を探す">
         名前や地域から、次に訪れたい場所を。
       </PageTitle>
       <div className="search-panel">
@@ -346,7 +379,10 @@ export function SearchPage() {
         </div>
       </div>
       <p className="fine">
-        デモ収録24件：公式資料参照4件・架空サンプル20件。実景写真とイメージイラストを使用しています。
+        デモ収録{shrines.length}件：公式資料参照
+        {shrines.filter((s) => !s.fictional).length}件・架空サンプル
+        {shrines.filter((s) => s.fictional).length}
+        件。実景写真とイメージイラストを使用しています。
       </p>
       {mode === "map" && (
         <Suspense fallback={<p>地図を読み込んでいます…</p>}>
@@ -395,6 +431,9 @@ export function ShrinePage() {
             {s.region} · {s.city} / {s.kind}
           </span>
           <h1>{s.name}</h1>
+          {s.id === "ise" && (
+            <span className="place-locale">岡山県岡山市 · 番町</span>
+          )}
           <p className="place-reading">{s.reading}</p>
           <p className="place-subtitle">
             {story?.subtitle || "一冊に残す、架空の参拝体験。"}
@@ -408,6 +447,37 @@ export function ShrinePage() {
         )}
       </div>
       <PhotoCredit shrine={s} />
+      {s.id === "ise" && (
+        <aside className="place-distinction">
+          <MapPin size={22} />
+          <div>
+            <strong>こちらは岡山県の「伊勢神社」です</strong>
+            <p>三重県の「伊勢神宮」とは別の神社です。</p>
+            <Link to="/shrines/ise-jingu">
+              三重県・伊勢神宮 内宮を見る <ArrowUpRight size={16} />
+            </Link>
+          </div>
+        </aside>
+      )}
+      {(s.id === "ise-jingu" || s.id === "ise-geku") && (
+        <aside className="jingu-guide">
+          <div>
+            <span className="eyebrow">ふたつのお宮、それぞれのご祭神</span>
+            <strong>伊勢神宮は、125の宮社の総称です。</strong>
+            <p>
+              内宮には天照大御神、外宮には豊受大御神。所在地と参拝の記録を分けてご案内しています。
+            </p>
+          </div>
+          <Link
+            to={
+              s.id === "ise-jingu" ? "/shrines/ise-geku" : "/shrines/ise-jingu"
+            }
+          >
+            {s.id === "ise-jingu" ? "外宮・豊受大神宮へ" : "内宮・皇大神宮へ"}
+            <ArrowUpRight size={18} />
+          </Link>
+        </aside>
+      )}
       <nav className="place-tabs" aria-label="寺社詳細の目次">
         {story && (
           <>
@@ -627,7 +697,11 @@ export function ShrinePage() {
           <p className="source">
             <a href={s.source} target="_blank" rel="noreferrer">
               出典：
-              {s.kind === "寺院" ? "四国八十八ヶ所霊場会" : "岡山県神社庁"}{" "}
+              {s.source.startsWith("https://www.isejingu.or.jp/")
+                ? "伊勢神宮公式"
+                : s.kind === "寺院"
+                  ? "四国八十八ヶ所霊場会"
+                  : "岡山県神社庁"}{" "}
               <ArrowUpRight size={13} />
             </a>
             <br />
@@ -697,9 +771,9 @@ export function GodPage() {
         {["amaterasu", "toyouke"].includes(god.id) ? (
           <>
             <div className="relationship">
-              <Link to="/gods/toyouke">豊受大神</Link>
+              <Link to="/gods/toyouke">豊受大御神</Link>
               <span>── お食事をつかさどる ── →</span>
-              <Link to="/gods/amaterasu">天照皇大神</Link>
+              <Link to="/gods/amaterasu">天照大御神</Link>
             </div>
             <p className="fine">
               御饌都神としての関係を表しています。親子関係を示す線ではありません。

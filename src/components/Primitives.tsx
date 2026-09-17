@@ -84,7 +84,9 @@ export function ShrineCard({
       </div>
       <div className="shrine-card-body">
         <div className="mini-label">
-          {shrine.fictional ? "架空サンプル" : "公式情報を参照"}
+          {shrine.fictional
+            ? "架空サンプル"
+            : `${shrine.region} / ${shrine.kind}`}
           {favorite ? " ・ お気に入り" : ""}
         </div>
         <h3>{shrine.name}</h3>

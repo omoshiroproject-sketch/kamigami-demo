@@ -1,117 +1,69 @@
 /* Quiet, tactile journal surfaces for the Shinto × mindset experience. */
 .mind-home {
   margin: 0 0 12px;
-  padding: 6px 0 30px;
+  padding: 0 0 20px;
   border-bottom: 1px solid var(--line);
-}
-.mind-home-heading {
-  margin-bottom: 20px;
-}
-.mind-home-heading h1 {
-  font-size: 29px;
-  margin: 6px 0;
-  letter-spacing: 0.06em;
 }
 .home-shrine-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .mind-home-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-bottom: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .mind-home-record,
 .mind-home-roadmap {
   display: flex;
   align-items: center;
-  gap: 22px;
-  padding: 28px;
+  gap: 16px;
+  padding: 16px 20px;
   min-width: 0;
+  position: relative;
 }
 .mind-home-record {
   color: #fff8e8;
   background: #343d35;
-  position: relative;
-  overflow: hidden;
 }
-.mind-home-record::after {
-  content: "";
-  border: 1px solid #cebb8a26;
-  border-radius: 50%;
-  width: 215px;
-  height: 215px;
-  position: absolute;
-  right: -110px;
-  top: -50px;
-  pointer-events: none;
+.mind-home-roadmap {
+  background: #eeebe1;
 }
 .mind-mark {
   display: grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
+  width: 42px;
+  height: 42px;
   border: 1px solid #c6ad796b;
   border-radius: 50%;
   color: #e5c393;
   flex-shrink: 0;
 }
+.mind-mark svg {
+  width: 22px;
+}
 .mind-home-grid small {
   font-size: 12px;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.03em;
+  display: block;
 }
 .mind-home-grid strong {
   display: block;
   font:
-    42px/1.5 Georgia,
+    32px/1.4 Georgia,
     serif;
 }
 .mind-home-grid strong span {
-  font: 12px sans-serif;
+  font: 11px sans-serif;
 }
 .mind-home-grid p {
-  margin: 3px 0 0;
-  font-size: 11px;
+  margin: 2px 0 0;
+  font-size: 10px;
 }
 .mind-home-grid > a > svg:last-child {
   margin-left: auto;
   flex-shrink: 0;
-}
-.mind-home-roadmap {
-  background: #eeebe1;
-  flex-wrap: wrap;
-  gap: 12px;
-  position: relative;
-}
-.mind-home-roadmap > svg:last-child {
-  position: absolute;
-  right: 22px;
-  top: 30px;
-}
-.mind-home-roadmap > div:first-child {
-  min-width: 170px;
-}
-.mini-roadmap {
-  display: flex;
-  gap: 8px;
-  margin-left: auto;
-}
-.mini-roadmap span {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  font:
-    14px Georgia,
-    serif;
-  border: 1px solid #c9bd9f;
-  border-radius: 50%;
-  color: #6e6657;
-}
-.mini-roadmap .reached {
-  background: #343d35;
-  color: #fff8e8;
-  border-color: #343d35;
+  width: 16px;
 }
 .mind-intro {
   display: flex;
@@ -762,12 +714,6 @@
   margin-top: 24px;
 }
 @media (max-width: 900px) {
-  .mind-home-grid {
-    grid-template-columns: 1fr;
-  }
-  .mind-home-roadmap {
-    padding-right: 50px;
-  }
   .milestone {
     padding: 17px;
   }
@@ -779,26 +725,42 @@
   .mind-home {
     padding: 4px 0 20px;
   }
-  .mind-home-heading h1 {
-    font-size: 24px;
-  }
   .home-shrine-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .mind-home-grid {
+    gap: 9px;
+  }
   .mind-home-record,
   .mind-home-roadmap {
-    padding: 22px;
-    gap: 18px;
-  }
-  .mind-home-roadmap {
-    padding-right: 42px;
+    padding: 12px;
+    gap: 0;
+    align-items: start;
   }
   .mind-mark {
-    width: 49px;
-    height: 49px;
+    display: none;
   }
-  .mini-roadmap {
-    margin-left: 0;
+  .mind-home-grid small {
+    font-size: 11px;
+    line-height: 1.5;
+    min-height: 33px;
+    padding-right: 10px;
+  }
+  .mind-home-grid strong {
+    font-size: 28px;
+  }
+  .mind-home-grid strong span {
+    font-size: 10px;
+  }
+  .mind-home-grid p {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .mind-home-grid > a > svg:last-child {
+    position: absolute;
+    top: 11px;
+    right: 8px;
+    width: 13px;
   }
   .mind-home > .button {
     width: 100%;

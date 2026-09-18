@@ -1,5 +1,6 @@
 import { openDB, type DBSchema, type IDBPTransaction } from "idb";
 import { initialState } from "../data/seed";
+import { funaokaEvent } from "../data/events";
 import type { State, Media, PhotoRecord } from "../types";
 interface DemoDB extends DBSchema {
   state: { key: string; value: State };
@@ -14,6 +15,12 @@ function withMindDefaults(state: State): State {
     declaration: "",
     updatedAt: "",
   };
+  if ((state.eventCatalogVersion ?? 0) < 1) {
+    if (!state.events.some((event) => event.id === funaokaEvent.id)) {
+      state.events.push(structuredClone(funaokaEvent));
+    }
+    state.eventCatalogVersion = 1;
+  }
   return state;
 }
 export interface Repository {
@@ -69,7 +76,9 @@ export function createRepository(
   return {
     read: async () => {
       const found = await (await db).get("state", "main");
-      return found?.mindEntries && found?.manifesto
+      return found?.mindEntries &&
+        found?.manifesto &&
+        found.eventCatalogVersion === 1
         ? found
         : transaction(() => {});
     },

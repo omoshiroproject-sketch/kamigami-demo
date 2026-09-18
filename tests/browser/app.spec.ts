@@ -186,6 +186,8 @@ test("運営で作成・下書き・公開・終了、イベント申込と参�
   await page.getByRole("button", { name: "デモ運営を開始" }).click();
   await page.getByRole("button", { name: "イベント", exact: true }).click();
   await page.getByLabel("名称", { exact: true }).fill("試験用の散歩会");
+  await page.getByLabel("イベントの扱い").selectOption("booking");
+  await page.getByLabel("会場・場所", { exact: true }).fill("架空の試験会場");
   await page
     .getByLabel("説明・参加条件")
     .fill("この端末だけの催し。デモ会場、参加費無料。");
@@ -398,6 +400,7 @@ for (const width of [375, 390, 768, 1440])
       "/rewards",
       "/events",
       "/events/event-walk",
+      "/events/funaoka-2026",
       "/tickets",
       "/points",
       "/profile",

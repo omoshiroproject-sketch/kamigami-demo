@@ -92,6 +92,10 @@ export function bookEvent(
   const e = s.events.find((e) => e.id === id);
   if (!e || e.status !== "公開" || Date.parse(e.date) <= +now)
     throw Error("申込受付は終了しました。");
+  if (e.infoOnly)
+    throw Error(
+      "このイベントは情報の紹介のみで、アプリからの申込はありません。",
+    );
   if (s.tickets.some((t) => t.eventId === id && !t.cancelled))
     throw Error("すでに申込済みです。参加券をご確認ください。");
   if (e.remaining < 1) throw Error("このイベントは満席です。");
@@ -132,7 +136,8 @@ export function validateItem(item: Mission | Reward | EventItem) {
     throw Error("残数は0以上の整数にしてください。");
   if (
     "capacity" in item &&
-    (!integer(item.capacity, 1) || !Number.isFinite(Date.parse(item.date)))
+    (!integer(item.capacity, item.infoOnly ? 0 : 1) ||
+      !Number.isFinite(Date.parse(item.date)))
   )
     throw Error("日程と定員を確認してください。");
 }

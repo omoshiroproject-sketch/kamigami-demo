@@ -24,6 +24,12 @@ import {
   cancelEvent,
 } from "../services/domain";
 import { PageTitle, Notice, Section, dateTime } from "../components/Primitives";
+import {
+  EventFeatureCard,
+  InformationEventDetail,
+  EventVisual,
+  EventImageCredit,
+} from "../components/EventGuide";
 const disclaimer = "デモ・実際の交換や予約は発生しません";
 export function MissionsPage() {
   const { state, mutate, busy } = useDemo();
@@ -364,36 +370,13 @@ export function EventsPage() {
     <>
       <PageTitle eyebrow="ご縁を深める、ひととき。" title="開催イベント" />
       <Notice>
-        すべてデモの申込体験です。実在する寺社への予約送信や、現地での催行はありません。
+        実在する祭典の紹介と、架空イベントの申込体験を掲載しています。アプリから実際の予約はできません。
       </Notice>
       <div className="event-list">
         {state.events
           .filter((e) => e.status !== "下書き")
           .map((e) => (
-            <Link className="event-card" to={`/events/${e.id}`} key={e.id}>
-              <div className="event-date">
-                <CalendarDays size={27} />
-                <b>
-                  {new Date(e.date).toLocaleDateString("ja-JP", {
-                    timeZone: "Asia/Tokyo",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </b>
-              </div>
-              <div>
-                <span className="tag">
-                  {e.status === "終了"
-                    ? "終了"
-                    : e.remaining
-                      ? "残り " + e.remaining + "席"
-                      : "満席"}
-                </span>
-                <h2>{e.title}</h2>
-                <p>{dateTime(e.date)}（日本時間）</p>
-              </div>
-              <ArrowUpRight size={20} />
-            </Link>
+            <EventFeatureCard event={e} key={e.id} />
           ))}
       </div>
       <Link className="button" to="/tickets">
@@ -409,6 +392,7 @@ export function EventDetail() {
   const [requestId, setRequestId] = useState(crypto.randomUUID());
   const event = state.events.find((e) => e.id === id && e.status !== "下書き");
   if (!event) return <PageTitle title="イベントは公開されていません" />;
+  if (event.infoOnly) return <InformationEventDetail event={event} />;
   const ticket = state.tickets.find((t) => t.eventId === id && !t.cancelled);
   const open = event.status === "公開" && Date.parse(event.date) > Date.now();
   return (
@@ -416,9 +400,16 @@ export function EventDetail() {
       <PageTitle eyebrow="デモのイベント" title={event.title} />
       <Notice>{disclaimer}</Notice>
       <div className="panel">
-        <div className="event-detail-art">
-          <CalendarDays size={50} />
-        </div>
+        {event.image ? (
+          <>
+            <EventVisual key={event.image.src} event={event} eager />
+            <EventImageCredit event={event} />
+          </>
+        ) : (
+          <div className="event-detail-art">
+            <CalendarDays size={50} />
+          </div>
+        )}
         <dl className="detail-list">
           <dt>日程</dt>
           <dd>{dateTime(event.date)}（日本時間）</dd>
@@ -427,9 +418,9 @@ export function EventDetail() {
             {event.capacity}名 · 残り{event.remaining}席
           </dd>
           <dt>会場・主催</dt>
-          <dd>架空のデモ会場・デモ運営</dd>
+          <dd>{event.venue || "架空のデモ会場・デモ運営"}</dd>
           <dt>参加費</dt>
-          <dd>無料（デモ）</dd>
+          <dd>{event.fee || "無料（デモ）"}</dd>
         </dl>
         <p className="prose">{event.description}</p>
         {ticket ? (

@@ -35,6 +35,7 @@ import {
 import { stories } from "../data/stories";
 import { PlaceVisual, PhotoCredit } from "../components/PlaceVisual";
 import { MindSummary } from "./Mind";
+import { HomeEvents } from "../components/EventGuide";
 const MapView = lazy(() => import("../components/MapView"));
 export function HomePage() {
   const { state } = useDemo();
@@ -42,11 +43,13 @@ export function HomePage() {
   const connected = addressMatcher.match(state.addresses.current);
   return (
     <>
+      <h1 className="visually-hidden">神々の系譜</h1>
       <div className="edition-line">
         <span>心を整える、参拝の旅帖</span>
         <span>知る、誓う、感謝する。</span>
       </div>
       <MindSummary />
+      <HomeEvents />
       <div className="journey-tools">
         <Link to="/search">
           <span className="tool-number">01</span>
@@ -168,7 +171,7 @@ export function HomePage() {
               <CalendarDays />
               <div>
                 <b>開催イベント</b>
-                <small>デモの参加券を受け取ってみる</small>
+                <small>季節の祭典と、参拝のきっかけ</small>
               </div>
               <ChevronRight />
             </Link>

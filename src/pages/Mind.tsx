@@ -37,11 +37,7 @@ export function MindSummary() {
   const progress = journeyProgress(state.photos);
   const latest = orderedEntries(state.mindEntries)[0];
   return (
-    <section className="mind-home">
-      <div className="mind-home-heading">
-        <span className="eyebrow">MY JOURNEY</span>
-        <h1>わたしの記録</h1>
-      </div>
+    <section className="mind-home" aria-label="わたしの記録">
       <div className="mind-home-grid">
         <Link className="mind-home-record" to="/mind">
           <span className="mind-mark">
@@ -73,16 +69,6 @@ export function MindSummary() {
                 ? `「${progress.next.title}」まで、あと${progress.next.count - progress.count}か所`
                 : "4つの節目を、これからの毎日へ。"}
             </p>
-          </div>
-          <div className="mini-roadmap" aria-hidden="true">
-            {milestones.map((m) => (
-              <span
-                key={m.count}
-                className={progress.count >= m.count ? "reached" : ""}
-              >
-                {m.count}
-              </span>
-            ))}
           </div>
           <ChevronRight size={20} />
         </Link>

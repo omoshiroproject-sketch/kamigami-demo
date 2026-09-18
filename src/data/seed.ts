@@ -1,4 +1,5 @@
 import type { State } from "../types";
+import { funaokaEvent } from "./events";
 export const config = {
   initialPoints: 300,
   learnReward: 50,
@@ -135,7 +136,9 @@ export function initialState(now = new Date()): State {
         remaining: 0,
         status: "公開",
       },
+      structuredClone(funaokaEvent),
     ],
+    eventCatalogVersion: 1,
     tickets: [],
     posts: [
       {

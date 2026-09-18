@@ -54,6 +54,28 @@ export type EventItem = {
   capacity: number;
   remaining: number;
   status: Status;
+  infoOnly?: boolean;
+  homeFeatured?: boolean;
+  recommendationDemo?: boolean;
+  venue?: string;
+  address?: string;
+  access?: string;
+  fee?: string;
+  summary?: string;
+  history?: string;
+  highlights?: string;
+  officialUrl?: string;
+  sourceNote?: string;
+  image?: EventPhoto;
+};
+export type EventPhoto = {
+  src: string;
+  alt: string;
+  author: string;
+  source: string;
+  license: string;
+  licenseUrl: string;
+  date?: string;
 };
 export type PhotoRecord = {
   id: string;
@@ -133,6 +155,7 @@ export type State = {
   rewards: Reward[];
   redemptions: Redemption[];
   events: EventItem[];
+  eventCatalogVersion?: number;
   tickets: Ticket[];
   posts: Post[];
 };
